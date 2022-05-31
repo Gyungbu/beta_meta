@@ -20,7 +20,7 @@ $ python meta_beta.py
 4. In the case of SNPs with the same phenotype, the 'EFFECT_ALLELE', 'NON_EFFECT_ALLELE' must be the same. (순서는 상관 없음)
 5. When the Effect allele and the Non-effect allele were reversed, the sign of the normalized effect β_i was calculated to change.
 
-### <Input file - Description>
+### <Input file - Column Description>
 1. BETA : Effect size of the individual study.
 2. BETA_SE : Standard deviation of the Beta of the individual study.
 3. OR : Odds ratio of the individual study.
@@ -28,7 +28,7 @@ $ python meta_beta.py
 5. OR_95%CI_UPPER : Upper bound of 95% Confidence interval of Odds ratio  
 6. P_VAL : P-value of the individual study.
 
-### <Output file - Description>
+### <Output file - Column Description>
 1. BETA : Weighted average of the Effect Size.
 2. BETA_SE : Standard deviation of the Beta.
 3. P_VAL : Meta P-value.
