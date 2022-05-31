@@ -17,9 +17,9 @@ $ python meta_beta.py
 5. When the Effect allele and the Non-effect allele were reversed, the sign of the normalized effect β_i was calculated to change.
 
 ## <Output file - Description>
-BETA : Weighted Average of the Effect Size.
-BETA_SE : Standard deviation of the Beta.
-P_VAL : P-value.
-BH_P_VAL : BH adjusted p-value.
-I_SQUARE : Higgin’s heterogeneity metric
-Q_HET : Cochran’s Q statistic
+1. BETA : Weighted Average of the Effect Size.
+2. BETA_SE : Standard deviation of the Beta.
+3. P_VAL : P-value.
+4. BH_P_VAL : BH adjusted p-value.
+5. I_SQUARE : Higgin’s heterogeneity metric
+6. Q_HET : Cochran’s Q statistic
