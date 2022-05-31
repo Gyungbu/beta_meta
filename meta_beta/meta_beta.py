@@ -30,7 +30,6 @@ df_meta = df_meta.drop_duplicates(li_column)
 # li_BETA : List of Beta corresponding to df_meta
 # li_BETA_SE : List of Beta Standard Error corresponding to df_meta
 
-
 li_BETA = []
 li_BETA_SE = []
 
