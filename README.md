@@ -22,7 +22,7 @@ $ python meta_beta.py
 
 ### <Input file - Column Description>
 1. BETA : Effect size of the individual study.
-2. BETA_SE : Standard deviation of the Beta of the individual study.
+2. BETA_SE : Standard error of the Beta of the individual study.
 3. OR : Odds ratio of the individual study.
 4. OR_95%CI_LOWER : Lower bound of 95% Confidence interval of Odds ratio
 5. OR_95%CI_UPPER : Upper bound of 95% Confidence interval of Odds ratio  
@@ -30,7 +30,7 @@ $ python meta_beta.py
 
 ### <Output file - Column Description>
 1. BETA : Weighted average of the Effect Size.
-2. BETA_SE : Standard deviation of the Beta.
+2. BETA_SE : Standard error of the Beta.
 3. P_VAL : Meta P-value.
 4. BH_P_VAL : BH adjusted Meta p-value.
 5. I_SQUARE : Higgin’s heterogeneity metric
