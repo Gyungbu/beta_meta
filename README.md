@@ -9,7 +9,7 @@ $ pip install scipy
 
 $ pip install pandas
 
-When you run the command below, the code is executed.
+When you run the command below, the code will be executed.
 
 $ python meta_beta.py
 
