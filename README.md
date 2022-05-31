@@ -4,7 +4,9 @@ Meta-analysis with Heterogeneity Test
 You need to install the module below
 
 $ pip install numpy
+
 $ pip install scipy
+
 $ pip install pandas
 
 When you run the command below, the code is executed.
