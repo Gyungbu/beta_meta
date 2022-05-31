@@ -15,6 +15,10 @@ When you run the command below, the code will be executed.
 
 $ find -name meta_beta.py | xargs python
 
+or
+
+$ python 'path of meta_beta.py'
+
 ### <Input file - Precautions>
 1. All values ('PHENOTYPE', 'SNP', 'EFFECT_ALLELE', 'NON_EFFECT_ALLELE', 'P_VAL') should be written.
 2. ('BETA', 'BETA_SE') or ('OR', 'OR_95%CI_LOWER', 'OR_95%CI_UPPER') values must be written in the input file.
