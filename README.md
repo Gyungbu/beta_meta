@@ -9,14 +9,14 @@ $ pip install pandas
 When you run the command below, the code is executed.
 $ python meta_beta.py
 
-##<Input file - Precautions>
+## <Input file - Precautions>
 1. All values ('PHENOTYPE', 'SNP', 'EFFECT_ALLELE', 'NON_EFFECT_ALLELE', 'P_VAL') must be written.
 2. ('BETA', 'BETA_SE') or ('OR', 'OR_95%CI_LOWER', 'OR_95%CI_UPPER') values must be written in the input file.
 3. For meta-analysis, all values in the input file must have the same spacing and spelling.
 4. In the case of SNPs with the same phenotype, the 'EFFECT_ALLELE', 'NON_EFFECT_ALLELE' must be the same. (순서는 상관 없음)
 5. When the Effect allele and the Non-effect allele were reversed, the sign of the normalized effect β_i was calculated to change.
 
-##<Output file - Description>
+## <Output file - Description>
 BETA : Weighted Average of the Effect Size.
 BETA_SE : Standard deviation of the Beta.
 P_VAL : P-value.
