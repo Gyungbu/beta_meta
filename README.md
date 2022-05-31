@@ -29,7 +29,7 @@ $ python meta_beta.py
 6. P_VAL : P-value of the individual study.
 
 ### <Output file - Column Description>
-1. BETA : Weighted average of the Effect Size.
+1. BETA : Weighted average of the Effect size.
 2. BETA_SE : Standard error of the Beta.
 3. P_VAL : Meta P-value.
 4. BH_P_VAL : BH adjusted Meta p-value.
