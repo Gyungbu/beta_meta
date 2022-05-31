@@ -1,6 +1,8 @@
 # genome_meta_beta
 Meta-analysis with Heterogeneity Test
 
+The whole meta_data folder should be downloaded.
+
 You need to install the module below
 
 $ pip install numpy
