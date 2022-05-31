@@ -11,7 +11,7 @@ $ pip install pandas
 
 When you run the command below, the code will be executed.
 
-$ python meta_beta.py
+$ find -name meta_beta.py | xargs python
 
 ### <Input file - Precautions>
 1. All values ('PHENOTYPE', 'SNP', 'EFFECT_ALLELE', 'NON_EFFECT_ALLELE', 'P_VAL') must be written.
