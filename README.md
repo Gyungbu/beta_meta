@@ -17,7 +17,7 @@ $ find -name meta_beta.py | xargs python
 
 or
 
-$ python 'path of meta_beta.py'
+$ python 'Absolute path of meta_beta.py'
 
 ### <Input file - Precautions>
 1. All values ('PHENOTYPE', 'SNP', 'EFFECT_ALLELE', 'NON_EFFECT_ALLELE', 'P_VAL') should be written.
