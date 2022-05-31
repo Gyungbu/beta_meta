@@ -31,7 +31,7 @@ $ python meta_beta.py
 ### <Output file - Description>
 1. BETA : Weighted average of the Effect Size.
 2. BETA_SE : Standard deviation of the Beta.
-3. P_VAL : P-value.
-4. BH_P_VAL : BH adjusted p-value.
+3. P_VAL : Meta P-value.
+4. BH_P_VAL : BH adjusted Meta p-value.
 5. I_SQUARE : Higgin’s heterogeneity metric
 6. Q_HET : Cochran’s Q statistic
