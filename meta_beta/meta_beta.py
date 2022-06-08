@@ -30,6 +30,7 @@ df_meta = df_meta.drop_duplicates(li_column)
 # li_BETA : List of Beta corresponding to df_meta
 # li_BETA_SE : List of Beta Standard Error corresponding to df_meta
 
+
 li_BETA = []
 li_BETA_SE = []
 
@@ -159,10 +160,10 @@ for i in range(len(li_PHENOTYPE_SNP)):
 
 for i in range(len(li_PHENOTYPE_SNP)):
   
-  if type(li_I_square[i]) == int: 
+  if type(li_I_square[i]) == float: 
+    condition = (df_meta.SNP == li_PHENOTYPE_SNP[i][1]) & (df_meta.PHENOTYPE == li_PHENOTYPE_SNP[i][0]) 
+    
     if (li_I_square[i] >= 50) & (len(df_meta[condition]) > 1):
-      
-      condition = (df_meta.SNP == li_PHENOTYPE_SNP[i][1]) & (df_meta.PHENOTYPE == li_PHENOTYPE_SNP[i][0])
       sum_w_i = 0
       sum_w_i_square = 0
       count = 0
@@ -176,16 +177,16 @@ for i in range(len(li_PHENOTYPE_SNP)):
       tau_square = (li_Q[i]-count+1) / (sum_w_i - sum_w_i_square / sum_w_i)                   
       tau_square = max(tau_square, 0)
       
+      sum_w_i_R_beta_i = 0
       sum_w_i_R = 0
-      sum_w_i = 0
-      for idx, row in df_meta[condition].iterrows():
-        w_i = row['BETA_SE']**(-2)
+      for idx2, row2 in df_meta[condition].iterrows():
+        w_i = row2['BETA_SE']**(-2)
         w_i_R = 1/ (1/w_i + tau_square)
-        sum_w_i_R += w_i_R * li_beta_F[i]
-        sum_w_i += w_i_R
+        sum_w_i_R_beta_i += w_i_R * row2['BETA']
+        sum_w_i_R += w_i_R
         
-      li_beta_F[i] = sum_w_i_R / sum_w_i
-      li_std_beta_F[i] = sum_w_i**-0.5
+      li_beta_F[i] = sum_w_i_R_beta_i / sum_w_i_R
+      li_std_beta_F[i] = sum_w_i_R**-0.5
 
 # Calculation - P-value 
 # li_p_value : List of P-value corresponding to li_PHENOTYPE_SNP
