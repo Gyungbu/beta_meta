@@ -3,7 +3,7 @@ Meta-analysis with Heterogeneity Test
 
 The whole meta_data folder should be downloaded.
 
-The list of required packages is saved in the requiremets.txt file.
+The list of required packages was displayed in the requiremets.txt file.
 
 When you run the command below, the code will be executed.
 
