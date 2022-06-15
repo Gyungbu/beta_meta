@@ -1,4 +1,4 @@
-# genome_meta_beta
+# beta_meta
 Meta-analysis with Heterogeneity Test
 
 The whole meta_data folder should be downloaded.
