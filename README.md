@@ -7,11 +7,11 @@ The list of required packages was shown in the requiremets.txt file.
 
 When you run the command below, the code will be executed.
 
-$ find -name meta_beta.py | xargs python
+$ find -name beta_meta.py | xargs python
 
 or
 
-$ python 'Absolute path of meta_beta.py'
+$ python 'Absolute path of beta_meta.py'
 
 ### <Input file - Precautions>
 1. All values ('PHENOTYPE', 'SNP', 'EFFECT_ALLELE', 'NON_EFFECT_ALLELE', 'P_VAL') should be written.
