@@ -1,7 +1,7 @@
 # beta_meta
 Meta-analysis with Heterogeneity Test
 
-The whole meta_data folder should be downloaded.
+The whole beta_meta folder should be downloaded.
 
 The list of required packages was shown in the requiremets.txt file.
 
