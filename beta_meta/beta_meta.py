@@ -30,7 +30,6 @@ df_meta = df_meta.drop_duplicates(li_column)
 # li_BETA : List of Beta corresponding to df_meta
 # li_BETA_SE : List of Beta Standard Error corresponding to df_meta
 
-
 li_BETA = []
 li_BETA_SE = []
 
@@ -89,11 +88,11 @@ for i in range(len(li_SNP)):
     print(li_SNP[i], row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE'], row['BETA'])
 '''
 # Calculation - Weighted average of the effect sizes 
-# li_beta_F : List of Weighted average of the effect sizes corresponding to li_PHENOTYPE_SNP
-# li_std_beta_F : List of Standard Error of Weighted average of the effect sizes corresponding to li_PHENOTYPE_SNP
+# li_BETA_META : List of Weighted average of the effect sizes corresponding to li_PHENOTYPE_SNP
+# li_STD_BETA_META : List of Standard Error of Weighted average of the effect sizes corresponding to li_PHENOTYPE_SNP
 
-li_beta_F = []
-li_std_beta_F = []
+li_BETA_META = []
+li_STD_BETA_META = []
 
 for i in range(len(li_PHENOTYPE_SNP)):
   
@@ -106,12 +105,12 @@ for i in range(len(li_PHENOTYPE_SNP)):
       w_i = row['BETA_SE']**(-2)
       sum_w_i += w_i
       sum_w_i_beta_i += (w_i * row['BETA'])
-    li_beta_F.append(sum_w_i_beta_i/sum_w_i)
-    li_std_beta_F.append(sum_w_i**-0.5)
+    li_BETA_META.append(sum_w_i_beta_i/sum_w_i)
+    li_STD_BETA_META.append(sum_w_i**-0.5)
   
   elif len(df_meta[condition]) == 1:
-    li_beta_F.append(df_meta[condition]['BETA'].values[0])
-    li_std_beta_F.append(df_meta[condition]['BETA_SE'].values[0])
+    li_BETA_META.append(df_meta[condition]['BETA'].values[0])
+    li_STD_BETA_META.append(df_meta[condition]['BETA_SE'].values[0])
  
 # Calculation - Cochran's Q statistic
 # li_Q : List of Cochran's Q statistic corresponding to li_PHENOTYPE_SNP
@@ -127,7 +126,7 @@ for i in range(len(li_PHENOTYPE_SNP)):
     for idx, row in df_meta[condition].iterrows():
       
       w_i = row['BETA_SE']**(-2)
-      delta_beta = (row['BETA'] - li_beta_F[i])    
+      delta_beta = (row['BETA'] - li_BETA_META[i])    
       Q += (w_i * (delta_beta**2))
     li_Q.append(Q)
   
@@ -155,8 +154,8 @@ for i in range(len(li_PHENOTYPE_SNP)):
     li_I_square.append('No Meta')
 
 # Calculation - Weighted average of the effect sizes Modification - Random Effect Model
-# li_beta_F : List of Weighted average of the effect sizes corrected by a Random Effect Model
-# li_std_beta_F : List of Standard Error of Weighted average of the effect sizes corrected by a Random Effect Model
+# li_BETA_META : List of Weighted average of the effect sizes corrected by a Random Effect Model
+# li_STD_BETA_META : List of Standard Error of Weighted average of the effect sizes corrected by a Random Effect Model
 
 for i in range(len(li_PHENOTYPE_SNP)):
   
@@ -185,8 +184,8 @@ for i in range(len(li_PHENOTYPE_SNP)):
         sum_w_i_R_beta_i += w_i_R * row2['BETA']
         sum_w_i_R += w_i_R
         
-      li_beta_F[i] = sum_w_i_R_beta_i / sum_w_i_R
-      li_std_beta_F[i] = sum_w_i_R**-0.5
+      li_BETA_META[i] = sum_w_i_R_beta_i / sum_w_i_R
+      li_STD_BETA_META[i] = sum_w_i_R**-0.5
 
 # Calculation - P-value 
 # li_p_value : List of P-value corresponding to li_PHENOTYPE_SNP
@@ -195,7 +194,7 @@ li_p_value = []
 
 for i in range(len(li_PHENOTYPE_SNP)):
   
-  Z = li_beta_F[i] / li_std_beta_F[i]
+  Z = li_BETA_META[i] / li_STD_BETA_META[i]
   p_value = 2 * norm.cdf(-abs(Z))
   
   li_p_value.append(p_value)
@@ -209,8 +208,8 @@ for i in range(len(li_PHENOTYPE_SNP)):
   df.loc[i, 'PHENOTYPE'] = li_PHENOTYPE_SNP[i][0]
   df.loc[i, 'SNP'] = li_PHENOTYPE_SNP[i][1]
 
-df['BETA'] = li_beta_F
-df['BETA_SE'] = li_std_beta_F
+df['BETA'] = li_BETA_META
+df['BETA_SE'] = li_STD_BETA_META
 df['P_VAL'] = li_p_value
 df['EFFECT_ALLELE'] = li_EFFECT_ALLELE
 df['NON_EFFECT_ALLELE'] = li_NON_EFFECT_ALLELE
