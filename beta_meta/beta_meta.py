@@ -192,32 +192,32 @@ for i in range(len(li_PHENOTYPE_SNP)):
   li_p_value.append(p_value)
 
 # Output file - Meta Analysis
-# df : Data Frame of Meta-analysis Result Ouput File
+# df_meta_output : Data Frame of Meta-analysis Result Ouput File
 
-df = pd.DataFrame(columns = ['PHENOTYPE', 'SNP', 'EFFECT_ALLELE', 'NON_EFFECT_ALLELE','BETA', 'BETA_SE', 'P_VAL', 'BH_P_VAL', 'I_SQUARE', 'Q_HET'])
+df_meta_output = pd.DataFrame(columns = ['PHENOTYPE', 'SNP', 'EFFECT_ALLELE', 'NON_EFFECT_ALLELE','BETA', 'BETA_SE', 'P_VAL', 'BH_P_VAL', 'I_SQUARE', 'Q_HET'])
 
 for i in range(len(li_PHENOTYPE_SNP)):
-  df.loc[i, 'PHENOTYPE'] = li_PHENOTYPE_SNP[i][0]
-  df.loc[i, 'SNP'] = li_PHENOTYPE_SNP[i][1]
+  df_meta_output.loc[i, 'PHENOTYPE'] = li_PHENOTYPE_SNP[i][0]
+  df_meta_output.loc[i, 'SNP'] = li_PHENOTYPE_SNP[i][1]
 
-df['BETA'] = li_BETA_META
-df['BETA_SE'] = li_STD_BETA_META
-df['P_VAL'] = li_p_value
-df['EFFECT_ALLELE'] = li_EFFECT_ALLELE
-df['NON_EFFECT_ALLELE'] = li_NON_EFFECT_ALLELE
-df['I_SQUARE'] = li_I_square
-df['Q_HET'] = li_Q  
+df_meta_output['BETA'] = li_BETA_META
+df_meta_output['BETA_SE'] = li_STD_BETA_META
+df_meta_output['P_VAL'] = li_p_value
+df_meta_output['EFFECT_ALLELE'] = li_EFFECT_ALLELE
+df_meta_output['NON_EFFECT_ALLELE'] = li_NON_EFFECT_ALLELE
+df_meta_output['I_SQUARE'] = li_I_square
+df_meta_output['Q_HET'] = li_Q  
 
 # P-value Correction - BH adjustment
-# df : Data Frame of Meta-analysis Result Ouput File
+# df_meta_output : Data Frame of Meta-analysis Result Ouput File
 
-for idx, row in df.iterrows():
-  condition = df.PHENOTYPE == row['PHENOTYPE']
+for idx, row in df_meta_output.iterrows():
+  condition = df_meta_output.PHENOTYPE == row['PHENOTYPE']
 
-  ascending_rank_p_val = df.groupby('PHENOTYPE')['P_VAL'].rank(method='min', ascending=True).values[idx]
-  df.loc[idx, 'BH_P_VAL'] = df.loc[idx, 'P_VAL'] * len(df[condition]) / ascending_rank_p_val
+  ascending_rank_p_val = df_meta_output.groupby('PHENOTYPE')['P_VAL'].rank(method='min', ascending=True).values[idx]
+  df_meta_output.loc[idx, 'BH_P_VAL'] = df_meta_output.loc[idx, 'P_VAL'] * len(df_meta_output[condition]) / ascending_rank_p_val
   
 path_meta_output = os.path.dirname(os.path.abspath(__file__)) + "/output/meta_output.xlsx" 
-df.to_excel(path_meta_output)
+df_meta_output.to_excel(path_meta_output)
 
   
