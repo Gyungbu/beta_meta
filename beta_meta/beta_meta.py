@@ -78,15 +78,7 @@ for i in range(len(li_PHENOTYPE_SNP)):
   
   li_EFFECT_ALLELE.append(EFFECT_ALLELE)
   li_NON_EFFECT_ALLELE.append(NON_EFFECT_ALLELE)
-'''
-# Check - EFFECT_ALLELE & NON_EFFECT_ALLELE    
 
-for i in range(len(li_SNP)):
-  condition = (df_meta.SNP == li_SNP[i]) 
-  for idx, row in df_meta[condition].iterrows():
-    
-    print(li_SNP[i], row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE'], row['BETA'])
-'''
 # Calculation - Weighted average of the effect sizes 
 # li_BETA_META : List of Weighted average of the effect sizes corresponding to li_PHENOTYPE_SNP
 # li_STD_BETA_META : List of Standard Error of Weighted average of the effect sizes corresponding to li_PHENOTYPE_SNP
