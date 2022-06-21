@@ -2,7 +2,69 @@ import os
 import pandas as pd
 import numpy as np
 from scipy.stats import norm
+ 
+# Function - Correct the effect direction
+
+def correct_effect_direction(effect_allele_1, non_Effect_allele_1, effect_allele_2, non_Effect_allele_2):
+  """
+  Correct the effect direction of individual studies
+  
+      Args:
+          effect_allele_1 (str): Effect allele of the study 1 for the specific phenotype and SNP
+          non_Effect_allele_1 (str): Non effect allele of the study 1 for the specific phenotype and SNP
+          effect_allele_2 (str): Effect allele of the study 2 for the specific phenotype and SNP
+          non_Effect_allele_2 (str): Non effect allele of the study 2 for the specific phenotype and SNP
+      
+      Returns:
+          result (int): Same direction (result = 1) / Opposite direction (result = -1) / Problem in effect & non-effect allele (result = 01)
+  """
+  result = 0
+  
+  if set([effect_allele_1, non_Effect_allele_1, effect_allele_2, non_Effect_allele_2]).issubset(set(['A', 'G', 'T', 'C'])):
     
+    set_allele_1 = set([effect_allele_1, non_Effect_allele_1])
+    set_allele_2 = set([effect_allele_2, non_Effect_allele_2])
+  
+    if len(set_allele_1.difference(set_allele_2)) == 1:
+      result = 0
+                   
+    elif len(set_allele_1.difference(set_allele_2)) == 0:
+      if effect_allele_1 == effect_allele_2:
+        result = 1
+      else:
+        result = -1
+          
+    elif len(set_allele_1.difference(set_allele_2)) == 2:
+      if (set_allele_2 == set(['A', 'T'])) | (set_allele_2 == set(['G', 'C'])):
+        result = 0
+         
+      elif (set([effect_allele_1, effect_allele_2]) == set(['A', 'T'])) | (set([effect_allele_1, effect_allele_2]) == set(['G', 'C'])):
+        result = 1
+       
+      else:
+        result = -1
+                     
+  return result
+  
+'''
+# Test the Function -  Correct the effect direction
+
+print(correct_effect_direction('T', 'C', 'T', 'A'), 'result:0')
+
+print(correct_effect_direction('A', 'G', 'A', 'G'), 'result:1')
+print(correct_effect_direction('A', 'G', 'T', 'C'), 'result:1')
+print(correct_effect_direction('A', 'G', 'C', 'T'), 'result:-1')
+
+print(correct_effect_direction('A', 'T', 'G', 'C'), 'result:0')
+print(correct_effect_direction('A', 'T', 'A', 'T'), 'result:1')
+print(correct_effect_direction('A', 'T', 'T', 'A'), 'result:-1')
+
+print(correct_effect_direction('G', 'C', 'G', 'C'), 'result:1')
+print(correct_effect_direction('G', 'C', 'C', 'G'), 'result:-1')
+
+print(correct_effect_direction('-', 'A', 'G', 'A'), 'result:0')
+'''
+
 # Input Folder 
 # file_list : List of File name in the Input Folder
 
@@ -71,15 +133,25 @@ li_NON_EFFECT_ALLELE = []
 
 for i in range(len(li_PHENOTYPE_SNP)):
   condition = (df_meta.SNP == li_PHENOTYPE_SNP[i][1]) & (df_meta.PHENOTYPE == li_PHENOTYPE_SNP[i][0]) 
+    
+  idx_min = df_meta[condition]['P_VAL'].idxmin()
+  EFFECT_ALLELE = df_meta.loc[idx_min]['EFFECT_ALLELE']
+  NON_EFFECT_ALLELE = df_meta.loc[idx_min]['NON_EFFECT_ALLELE']
   
-  EFFECT_ALLELE = df_meta[condition]['EFFECT_ALLELE'].values[0]
-  NON_EFFECT_ALLELE = df_meta[condition]['NON_EFFECT_ALLELE'].values[0]
-    
-  condition_reverse = (df_meta.SNP == li_PHENOTYPE_SNP[i][1]) & (df_meta.PHENOTYPE == li_PHENOTYPE_SNP[i][0]) & (df_meta['NON_EFFECT_ALLELE'] == EFFECT_ALLELE) & (df_meta['EFFECT_ALLELE'] == NON_EFFECT_ALLELE)
-    
-  df_meta.loc[condition_reverse, 'EFFECT_ALLELE'] = EFFECT_ALLELE
-  df_meta.loc[condition_reverse, 'NON_EFFECT_ALLELE'] = NON_EFFECT_ALLELE
-  df_meta.loc[condition_reverse, 'BETA'] *= -1
+  for idx, row in df_meta[condition].iterrows():
+
+    if correct_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == -1:
+      df_meta.loc[idx, 'EFFECT_ALLELE'] = EFFECT_ALLELE
+      df_meta.loc[idx, 'NON_EFFECT_ALLELE'] = NON_EFFECT_ALLELE
+      df_meta.loc[idx, 'BETA'] *= -1
+      
+    if correct_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == 1:
+      df_meta.loc[idx, 'EFFECT_ALLELE'] = EFFECT_ALLELE
+      df_meta.loc[idx, 'NON_EFFECT_ALLELE'] = NON_EFFECT_ALLELE
+      df_meta.loc[idx, 'BETA'] *= 1      
+      
+    elif correct_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == 0:
+      df_meta = df_meta.drop(idx)
   
   li_EFFECT_ALLELE.append(EFFECT_ALLELE)
   li_NON_EFFECT_ALLELE.append(NON_EFFECT_ALLELE)
