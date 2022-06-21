@@ -48,7 +48,7 @@ for idx, row in df_meta.iterrows():
 df_meta['BETA'] = li_BETA
 df_meta['BETA_SE'] = li_BETA_SE
 
-# Remove the NaN Data & Columns
+# Remove the NaN Data & Unnecessary Columns
 
 df_meta = df_meta.drop(['OR', 'OR_95%CI_LOWER', 'OR_95%CI_UPPER'], axis=1)
 df_meta = df_meta.dropna()
