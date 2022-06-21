@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from scipy.stats import norm
  
-# Function - Correct the effect direction
+# Function - Correct the Effect Direction
 
 def correct_effect_direction(effect_allele_1, non_Effect_allele_1, effect_allele_2, non_Effect_allele_2):
   """
