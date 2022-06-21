@@ -75,11 +75,11 @@ for i in range(len(li_PHENOTYPE_SNP)):
   EFFECT_ALLELE = df_meta[condition]['EFFECT_ALLELE'].values[0]
   NON_EFFECT_ALLELE = df_meta[condition]['NON_EFFECT_ALLELE'].values[0]
     
-  condition2 = (df_meta.SNP == li_PHENOTYPE_SNP[i][1]) & (df_meta.PHENOTYPE == li_PHENOTYPE_SNP[i][0]) & (df_meta['NON_EFFECT_ALLELE'] == EFFECT_ALLELE) & (df_meta['EFFECT_ALLELE'] == NON_EFFECT_ALLELE)
+  condition_reverse = (df_meta.SNP == li_PHENOTYPE_SNP[i][1]) & (df_meta.PHENOTYPE == li_PHENOTYPE_SNP[i][0]) & (df_meta['NON_EFFECT_ALLELE'] == EFFECT_ALLELE) & (df_meta['EFFECT_ALLELE'] == NON_EFFECT_ALLELE)
     
-  df_meta.loc[condition2, 'EFFECT_ALLELE'] = EFFECT_ALLELE
-  df_meta.loc[condition2, 'NON_EFFECT_ALLELE'] = NON_EFFECT_ALLELE
-  df_meta.loc[condition2, 'BETA'] *= -1
+  df_meta.loc[condition_reverse, 'EFFECT_ALLELE'] = EFFECT_ALLELE
+  df_meta.loc[condition_reverse, 'NON_EFFECT_ALLELE'] = NON_EFFECT_ALLELE
+  df_meta.loc[condition_reverse, 'BETA'] *= -1
   
   li_EFFECT_ALLELE.append(EFFECT_ALLELE)
   li_NON_EFFECT_ALLELE.append(NON_EFFECT_ALLELE)
