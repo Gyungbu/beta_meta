@@ -47,7 +47,7 @@ def sign_effect_direction(effect_allele_1, non_Effect_allele_1, effect_allele_2,
   return result
   
 '''
-# Test the Function -  Correct the effect direction
+# Test the Function - "sign_effect_direction"
 
 print(sign_effect_direction('T', 'C', 'T', 'A'), 'result:0')
 
