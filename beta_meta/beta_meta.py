@@ -75,11 +75,11 @@ file_list = os.listdir(path_meta_data_dir)
 # li_column : List of column name in the Input File
 # df_meta : Data frame of Input Files to be Meta-Analyzed
 
-li_column = ['PHENOTYPE', 'SNP', 'EFFECT_ALLELE', 'NON_EFFECT_ALLELE', 'BETA', 'BETA_SE', 'OR', 'OR_95%CI_LOWER', 'OR_95%CI_UPPER','P_VAL']
+li_column = ['PHENOTYPE', 'SNP', 'EFFECT_ALLELE', 'NON_EFFECT_ALLELE', 'BETA', 'BETA_SE', 'OR', 'OR_95%CI_LOWER', 'OR_95%CI_UPPER', 'P_VAL']
 df_meta = pd.DataFrame(columns = li_column)
 
-for i in range(len(file_list)):
-  path_meta_data = path_meta_data_dir + file_list[i]
+for file in file_list:
+  path_meta_data = path_meta_data_dir + file
   df_meta_data = pd.read_excel(path_meta_data)
   df_meta_data = df_meta_data.loc[:, li_column]
   df_meta_data = df_meta_data.replace({'EFFECT_ALLELE':{1:'A', 2:'C', 3:'G', 4:'T'},'NON_EFFECT_ALLELE':{1:'A', 2:'C', 3:'G', 4:'T'}})
@@ -247,6 +247,7 @@ for i in range(len(li_PHENOTYPE_SNP)):
       
       sum_w_i_R_beta_i = 0
       sum_w_i_R = 0
+      
       for idx2, row2 in df_meta[condition].iterrows():
         w_i = row2['BETA_SE']**(-2)
         w_i_R = 1/ (1/w_i + tau_square)
@@ -271,7 +272,7 @@ for i in range(len(li_PHENOTYPE_SNP)):
 # Output file - Meta Analysis
 # df_meta_output : Data Frame of Meta-analysis Result Ouput File
 
-df_meta_output = pd.DataFrame(columns = ['PHENOTYPE', 'SNP', 'EFFECT_ALLELE', 'NON_EFFECT_ALLELE','BETA', 'BETA_SE', 'P_VAL', 'BH_P_VAL', 'I_SQUARE', 'Q_HET'])
+df_meta_output = pd.DataFrame(columns = ['PHENOTYPE', 'SNP', 'EFFECT_ALLELE', 'NON_EFFECT_ALLELE', 'BETA', 'BETA_SE', 'P_VAL', 'BH_P_VAL', 'I_SQUARE', 'Q_HET'])
 
 for i in range(len(li_PHENOTYPE_SNP)):
   df_meta_output.loc[i, 'PHENOTYPE'] = li_PHENOTYPE_SNP[i][0]
