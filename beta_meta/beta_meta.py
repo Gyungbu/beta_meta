@@ -3,11 +3,11 @@ import pandas as pd
 import numpy as np
 from scipy.stats import norm
  
-# Function - Correct the Effect Direction
+# Function - Sign of the Effect Direction
 
-def correct_effect_direction(effect_allele_1, non_Effect_allele_1, effect_allele_2, non_Effect_allele_2):
+def sign_effect_direction(effect_allele_1, non_Effect_allele_1, effect_allele_2, non_Effect_allele_2):
   """
-  Correct the effect direction of individual studies
+  Calculate the sign of effect direction between meta-studies
   
       Args:
           effect_allele_1 (str): Effect allele of the study 1 for the specific phenotype and SNP
@@ -49,20 +49,20 @@ def correct_effect_direction(effect_allele_1, non_Effect_allele_1, effect_allele
 '''
 # Test the Function -  Correct the effect direction
 
-print(correct_effect_direction('T', 'C', 'T', 'A'), 'result:0')
+print(sign_effect_direction('T', 'C', 'T', 'A'), 'result:0')
 
-print(correct_effect_direction('A', 'G', 'A', 'G'), 'result:1')
-print(correct_effect_direction('A', 'G', 'T', 'C'), 'result:1')
-print(correct_effect_direction('A', 'G', 'C', 'T'), 'result:-1')
+print(sign_effect_direction('A', 'G', 'A', 'G'), 'result:1')
+print(sign_effect_direction('A', 'G', 'T', 'C'), 'result:1')
+print(sign_effect_direction('A', 'G', 'C', 'T'), 'result:-1')
 
-print(correct_effect_direction('A', 'T', 'G', 'C'), 'result:0')
-print(correct_effect_direction('A', 'T', 'A', 'T'), 'result:1')
-print(correct_effect_direction('A', 'T', 'T', 'A'), 'result:-1')
+print(sign_effect_direction('A', 'T', 'G', 'C'), 'result:0')
+print(sign_effect_direction('A', 'T', 'A', 'T'), 'result:1')
+print(sign_effect_direction('A', 'T', 'T', 'A'), 'result:-1')
 
-print(correct_effect_direction('G', 'C', 'G', 'C'), 'result:1')
-print(correct_effect_direction('G', 'C', 'C', 'G'), 'result:-1')
+print(sign_effect_direction('G', 'C', 'G', 'C'), 'result:1')
+print(sign_effect_direction('G', 'C', 'C', 'G'), 'result:-1')
 
-print(correct_effect_direction('-', 'A', 'G', 'A'), 'result:0')
+print(sign_effect_direction('-', 'A', 'G', 'A'), 'result:0')
 '''
 
 # Input Folder 
@@ -140,17 +140,17 @@ for j in range(len(li_PHENOTYPE_SNP)):
   
   for idx, row in df_meta[condition].iterrows():
 
-    if correct_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == -1:
+    if sign_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == -1:
       df_meta.loc[idx, 'EFFECT_ALLELE'] = EFFECT_ALLELE
       df_meta.loc[idx, 'NON_EFFECT_ALLELE'] = NON_EFFECT_ALLELE
       df_meta.loc[idx, 'BETA'] *= -1
       
-    if correct_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == 1:
+    if sign_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == 1:
       df_meta.loc[idx, 'EFFECT_ALLELE'] = EFFECT_ALLELE
       df_meta.loc[idx, 'NON_EFFECT_ALLELE'] = NON_EFFECT_ALLELE
       df_meta.loc[idx, 'BETA'] *= 1      
       
-    elif correct_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == 0:
+    elif sign_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == 0:
       df_meta = df_meta.drop(idx)
   
   li_EFFECT_ALLELE.append(EFFECT_ALLELE)
