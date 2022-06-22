@@ -36,9 +36,9 @@ $ python 'Absolute path of beta_meta.py'
 2. SNP : SNP of the integrated study.
 3. EFFECT_ALLELE : Effect allele of the study with the lowest p value for a specific phenotype, SNP
 4. NON_EFFECT_ALLELE : Non-effect allele of the study with the lowest p value for a specific phenotype, SNP
-5. BETA : Weighted average of the Effect size.
-6. BETA_SE : Standard error of the Beta.
-7. P_VAL : Meta P-value.
-8. BH_P_VAL : BH adjusted Meta p-value.
-9. I_SQUARE : Higgin’s heterogeneity metric
-10. Q_HET : Cochran’s Q statistic
+5. BETA : Weighted average of the Effect sizes for specific phenotypes, SNPs.
+6. BETA_SE : Standard error of the integrated beta for specific phenotypes, SNPs.
+7. P_VAL : Meta P-value for specific phenotypes, SNPs..
+8. BH_P_VAL : BH adjusted Meta p-value for specific phenotypes, SNPs..
+9. I_SQUARE : Higgin’s heterogeneity metric for specific phenotypes, SNPs.
+10. Q_HET : Cochran’s Q statistic for specific phenotypes, SNPs.
