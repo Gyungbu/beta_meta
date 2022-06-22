@@ -16,7 +16,7 @@ def correct_effect_direction(effect_allele_1, non_Effect_allele_1, effect_allele
           non_Effect_allele_2 (str): Non effect allele of the study 2 for the specific phenotype and SNP
       
       Returns:
-          result (int): Same direction (result = 1) / Opposite direction (result = -1) / Problem in effect & non-effect allele (result = 01)
+          result (int): Same direction (result = 1) / Opposite direction (result = -1) / Effect alleles and non-effect alleles do not match between meta-studies (result = 0)
   """
   result = 0
   
