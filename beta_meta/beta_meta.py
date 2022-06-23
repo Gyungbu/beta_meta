@@ -31,6 +31,7 @@ def sign_effect_direction(effect_allele_1, non_Effect_allele_1, effect_allele_2,
     elif len(set_allele_1.difference(set_allele_2)) == 0:
       if effect_allele_1 == effect_allele_2:
         result = 1
+      
       else:
         result = -1
           
@@ -199,7 +200,7 @@ for j in range(len(li_PHENOTYPE_SNP)):
     li_Q.append(Q)
   
   elif len(df_meta[condition]) == 1:
-    li_Q.append(0)
+    li_Q.append('No Meta')
 
 # Calculation - Higgin's heterogeneity metric
 # li_I_square : List of Higgin's heterogeneity metric corresponding to li_PHENOTYPE_SNP
@@ -227,7 +228,7 @@ for j in range(len(li_PHENOTYPE_SNP)):
 
 for j in range(len(li_PHENOTYPE_SNP)):
   
-  if type(li_I_square[j]) == float: 
+  if li_I_square[j] != 'No Meta': 
     condition = (df_meta.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
     
     if (li_I_square[j] >= 50) & (len(df_meta[condition]) > 1):
@@ -262,11 +263,14 @@ for j in range(len(li_PHENOTYPE_SNP)):
 li_p_value = []
 
 for j in range(len(li_PHENOTYPE_SNP)):
-  
-  Z = li_BETA_META[j] / li_STD_BETA_META[j]
-  p_value = 2 * norm.cdf(-abs(Z))
-  
-  li_p_value.append(p_value)
+  if li_I_square[j] != 'No Meta': 
+    Z = li_BETA_META[j] / li_STD_BETA_META[j]
+    p_value = 2 * norm.cdf(-abs(Z))
+    
+    li_p_value.append(p_value)
+  else:
+    condition = (df_meta.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
+    li_p_value.append(df_meta[condition]['P_VAL'].values[0])
 
 # Output file - Meta Analysis
 # df_meta_output : Data Frame of Meta-analysis Result Ouput File
