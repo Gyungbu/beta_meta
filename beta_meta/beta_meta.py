@@ -144,7 +144,7 @@ for j in range(len(li_PHENOTYPE_SNP)):
       df_meta.loc[idx, 'NON_EFFECT_ALLELE'] = NON_EFFECT_ALLELE
       df_meta.loc[idx, 'BETA'] *= -1
       
-    if sign_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == 1:
+    elif sign_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == 1:
       df_meta.loc[idx, 'EFFECT_ALLELE'] = EFFECT_ALLELE
       df_meta.loc[idx, 'NON_EFFECT_ALLELE'] = NON_EFFECT_ALLELE
       df_meta.loc[idx, 'BETA'] *= 1      
