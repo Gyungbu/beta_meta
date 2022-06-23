@@ -21,7 +21,6 @@ def sign_effect_direction(effect_allele_1, non_Effect_allele_1, effect_allele_2,
   result = 0
   
   if set([effect_allele_1, non_Effect_allele_1, effect_allele_2, non_Effect_allele_2]).issubset(set(['A', 'G', 'T', 'C'])):
-    
     set_allele_1 = set([effect_allele_1, non_Effect_allele_1])
     set_allele_2 = set([effect_allele_2, non_Effect_allele_2])
   
@@ -134,13 +133,12 @@ li_NON_EFFECT_ALLELE = []
 
 for j in range(len(li_PHENOTYPE_SNP)):
   condition = (df_meta.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
-    
+  
   idx_min = df_meta[condition]['P_VAL'].idxmin()
   EFFECT_ALLELE = df_meta.loc[idx_min]['EFFECT_ALLELE']
   NON_EFFECT_ALLELE = df_meta.loc[idx_min]['NON_EFFECT_ALLELE']
   
   for idx, row in df_meta[condition].iterrows():
-
     if sign_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == -1:
       df_meta.loc[idx, 'EFFECT_ALLELE'] = EFFECT_ALLELE
       df_meta.loc[idx, 'NON_EFFECT_ALLELE'] = NON_EFFECT_ALLELE
@@ -165,7 +163,6 @@ li_BETA_META = []
 li_STD_BETA_META = []
 
 for j in range(len(li_PHENOTYPE_SNP)):
-  
   condition = (df_meta.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
   sum_w_i = 0
   sum_w_i_beta_i = 0
@@ -175,6 +172,7 @@ for j in range(len(li_PHENOTYPE_SNP)):
       w_i = row['BETA_SE']**(-2)
       sum_w_i += w_i
       sum_w_i_beta_i += (w_i * row['BETA'])
+    
     li_BETA_META.append(sum_w_i_beta_i/sum_w_i)
     li_STD_BETA_META.append(sum_w_i**-0.5)
   
@@ -188,7 +186,6 @@ for j in range(len(li_PHENOTYPE_SNP)):
 li_Q = []
 
 for j in range(len(li_PHENOTYPE_SNP)):
-  
   condition = (df_meta.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
   Q = 0
   
@@ -208,7 +205,6 @@ for j in range(len(li_PHENOTYPE_SNP)):
 li_I_square = []
 
 for j in range(len(li_PHENOTYPE_SNP)):
-  
   condition = (df_meta.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
   count = 0
   
@@ -227,7 +223,6 @@ for j in range(len(li_PHENOTYPE_SNP)):
 # li_STD_BETA_META : List of Standard Error of Weighted average of the effect sizes corrected by a Random Effect Model
 
 for j in range(len(li_PHENOTYPE_SNP)):
-  
   if li_I_square[j] != 'No Meta': 
     condition = (df_meta.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
     
@@ -268,6 +263,7 @@ for j in range(len(li_PHENOTYPE_SNP)):
     p_value = 2 * norm.cdf(-abs(Z))
     
     li_p_value.append(p_value)
+  
   else:
     condition = (df_meta.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
     li_p_value.append(df_meta[condition]['P_VAL'].values[0])
