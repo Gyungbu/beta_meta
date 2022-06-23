@@ -81,10 +81,15 @@ df_meta = pd.DataFrame(columns = li_column)
 for file in file_list:
   path_meta_data = path_meta_data_dir + file
   df_meta_data = pd.read_excel(path_meta_data)
-  df_meta_data = df_meta_data.loc[:, li_column]
-  df_meta_data = df_meta_data.replace({'EFFECT_ALLELE':{1:'A', 2:'C', 3:'G', 4:'T'},'NON_EFFECT_ALLELE':{1:'A', 2:'C', 3:'G', 4:'T'}})
-
-  df_meta = pd.concat([df_meta, df_meta_data])
+  
+  if set(li_column).issubset(set(list(df_meta_data.columns))):
+    df_meta_data = df_meta_data.loc[:, li_column]
+    df_meta_data = df_meta_data.replace({'EFFECT_ALLELE':{1:'A', 2:'C', 3:'G', 4:'T'},'NON_EFFECT_ALLELE':{1:'A', 2:'C', 3:'G', 4:'T'}})
+  
+    df_meta = pd.concat([df_meta, df_meta_data])
+    
+  else:
+    print('Please check the columns of the input file! (Ex, PHENOTYPE, SNP, EFFECT_ALLELE, NON_EFFECT_ALLELE, BETA, BETA_SE, OR, OR_95%CI_LOWER, OR_95%CI_UPPER, P_VAL)')  
 
 df_meta = df_meta.drop_duplicates(li_column)
 
