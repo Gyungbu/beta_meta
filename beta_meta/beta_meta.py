@@ -71,7 +71,7 @@ print(sign_effect_direction('-', 'A', 'G', 'A'), 'result:0')
 path_meta_data_dir = os.path.dirname(os.path.abspath(__file__)) + "/input/"
 file_list = os.listdir(path_meta_data_dir)
 
-# Column Extraction / Concat the Dataframes / Deduplication
+# Column Extraction / Concat the Dataframes 
 # li_column : List of column name in the Input File
 # df_meta : Data frame of Input Files to be Meta-Analyzed
 
@@ -91,9 +91,16 @@ for file in file_list:
   else:
     print('Please check the columns of the input file! (Ex, PHENOTYPE, SNP, EFFECT_ALLELE, NON_EFFECT_ALLELE, BETA, BETA_SE, OR, OR_95%CI_LOWER, OR_95%CI_UPPER, P_VAL)')  
 
+# Remove Spaces / Deduplication
+
+df_meta['PHENOTYPE'] = df_meta['PHENOTYPE'].str.strip()
+df_meta['SNP'] = df_meta['SNP'].str.strip()
+df_meta['EFFECT_ALLELE'] = df_meta['EFFECT_ALLELE'].str.strip()
+df_meta['NON_EFFECT_ALLELE'] = df_meta['NON_EFFECT_ALLELE'].str.strip()
+
 df_meta = df_meta.drop_duplicates(li_column)
 
-# Calculation - BETA & SE
+# Calculation - BETA & BETA_SE
 # li_BETA : List of Beta corresponding to df_meta
 # li_BETA_SE : List of Beta Standard Error corresponding to df_meta
 
@@ -257,7 +264,7 @@ for j in range(len(li_PHENOTYPE_SNP)):
       li_BETA_META[j] = sum_w_i_R_beta_i / sum_w_i_R
       li_STD_BETA_META[j] = sum_w_i_R**-0.5
 
-# Calculation - P-value 
+# Calculation - Integrated P-value 
 # li_p_value : List of P-value corresponding to li_PHENOTYPE_SNP
 
 li_p_value = []
