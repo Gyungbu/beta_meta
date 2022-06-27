@@ -73,41 +73,41 @@ file_list = os.listdir(path_meta_data_dir)
 
 # Column Extraction / Concat the Dataframes 
 # li_column : List of column name in the Input File
-# df_meta : Data frame of Input Files to be Meta-Analyzed
+# df_meta_input : Data frame of Input Files to be Meta-Analyzed
 
 li_column = ['PHENOTYPE', 'SNP', 'EFFECT_ALLELE', 'NON_EFFECT_ALLELE', 'BETA', 'BETA_SE', 'OR', 'OR_95%CI_LOWER', 'OR_95%CI_UPPER', 'P_VAL']
-df_meta = pd.DataFrame(columns = li_column)
+df_meta_input = pd.DataFrame(columns = li_column)
 
 for file in file_list:
   path_meta_data = path_meta_data_dir + file
-  df_meta_data = pd.read_excel(path_meta_data)
+  df_meta_input_data = pd.read_excel(path_meta_data)
   
-  if set(li_column).issubset(set(list(df_meta_data.columns))):
-    df_meta_data = df_meta_data.loc[:, li_column]
-    df_meta_data = df_meta_data.replace({'EFFECT_ALLELE':{1:'A', 2:'C', 3:'G', 4:'T'},'NON_EFFECT_ALLELE':{1:'A', 2:'C', 3:'G', 4:'T'}})
+  if set(li_column).issubset(set(list(df_meta_input_data.columns))):
+    df_meta_input_data = df_meta_input_data.loc[:, li_column]
+    df_meta_input_data = df_meta_input_data.replace({'EFFECT_ALLELE':{1:'A', 2:'C', 3:'G', 4:'T'},'NON_EFFECT_ALLELE':{1:'A', 2:'C', 3:'G', 4:'T'}})
   
-    df_meta = pd.concat([df_meta, df_meta_data])
+    df_meta_input = pd.concat([df_meta_input, df_meta_input_data])
     
   else:
     print('Please check the columns of the input file! (Ex, PHENOTYPE, SNP, EFFECT_ALLELE, NON_EFFECT_ALLELE, BETA, BETA_SE, OR, OR_95%CI_LOWER, OR_95%CI_UPPER, P_VAL)')  
 
 # Remove Spaces / Deduplication
 
-df_meta['PHENOTYPE'] = df_meta['PHENOTYPE'].str.strip()
-df_meta['SNP'] = df_meta['SNP'].str.strip()
-df_meta['EFFECT_ALLELE'] = df_meta['EFFECT_ALLELE'].str.strip()
-df_meta['NON_EFFECT_ALLELE'] = df_meta['NON_EFFECT_ALLELE'].str.strip()
+df_meta_input['PHENOTYPE'] = df_meta_input['PHENOTYPE'].str.strip()
+df_meta_input['SNP'] = df_meta_input['SNP'].str.strip()
+df_meta_input['EFFECT_ALLELE'] = df_meta_input['EFFECT_ALLELE'].str.strip()
+df_meta_input['NON_EFFECT_ALLELE'] = df_meta_input['NON_EFFECT_ALLELE'].str.strip()
 
-df_meta = df_meta.drop_duplicates(li_column)
+df_meta_input = df_meta_input.drop_duplicates(li_column)
 
 # Calculation - BETA & BETA_SE
-# li_BETA : List of Beta corresponding to df_meta
-# li_BETA_SE : List of Beta Standard Error corresponding to df_meta
+# li_BETA : List of Beta corresponding to df_meta_input
+# li_BETA_SE : List of Beta Standard Error corresponding to df_meta_input
 
 li_BETA = []
 li_BETA_SE = []
 
-for idx, row in df_meta.iterrows():
+for idx, row in df_meta_input.iterrows():
   if (np.isnan(row['OR']) == False) & (np.isnan(row['OR_95%CI_LOWER']) == False) & (np.isnan(row['OR_95%CI_UPPER']) == False):
     Beta = np.log(row['OR'])
     Beta_SE = (np.log(row['OR_95%CI_UPPER']) - np.log(row['OR_95%CI_LOWER']))/3.92 
@@ -119,20 +119,20 @@ for idx, row in df_meta.iterrows():
     li_BETA.append(row['BETA'])
     li_BETA_SE.append(row['BETA_SE'])
     
-df_meta['BETA'] = li_BETA
-df_meta['BETA_SE'] = li_BETA_SE
+df_meta_input['BETA'] = li_BETA
+df_meta_input['BETA_SE'] = li_BETA_SE
 
 # Remove the NaN Data & Unnecessary Columns
 
-df_meta = df_meta.drop(['OR', 'OR_95%CI_LOWER', 'OR_95%CI_UPPER'], axis=1)
-df_meta = df_meta.dropna()
+df_meta_input = df_meta_input.drop(['OR', 'OR_95%CI_LOWER', 'OR_95%CI_UPPER'], axis=1)
+df_meta_input = df_meta_input.dropna()
 
 # Create the list [PHENOTYPE, SNP]
 # li_PHENOTYPE_SNP : List of Phenotype & SNP 
 
 li_PHENOTYPE_SNP = []
 
-for idx, row in df_meta.iterrows(): 
+for idx, row in df_meta_input.iterrows(): 
   if [row['PHENOTYPE'], row['SNP']] not in li_PHENOTYPE_SNP:
     li_PHENOTYPE_SNP.append([row['PHENOTYPE'], row['SNP']])
 
@@ -144,25 +144,25 @@ li_EFFECT_ALLELE = []
 li_NON_EFFECT_ALLELE = []
 
 for j in range(len(li_PHENOTYPE_SNP)):
-  condition = (df_meta.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
+  condition = (df_meta_input.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta_input.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
   
-  idx_min = df_meta[condition]['P_VAL'].idxmin()
-  EFFECT_ALLELE = df_meta.loc[idx_min]['EFFECT_ALLELE']
-  NON_EFFECT_ALLELE = df_meta.loc[idx_min]['NON_EFFECT_ALLELE']
+  idx_min = df_meta_input[condition]['P_VAL'].idxmin()
+  EFFECT_ALLELE = df_meta_input.loc[idx_min]['EFFECT_ALLELE']
+  NON_EFFECT_ALLELE = df_meta_input.loc[idx_min]['NON_EFFECT_ALLELE']
   
-  for idx, row in df_meta[condition].iterrows():
+  for idx, row in df_meta_input[condition].iterrows():
     if sign_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == -1:
-      df_meta.loc[idx, 'EFFECT_ALLELE'] = EFFECT_ALLELE
-      df_meta.loc[idx, 'NON_EFFECT_ALLELE'] = NON_EFFECT_ALLELE
-      df_meta.loc[idx, 'BETA'] *= -1
+      df_meta_input.loc[idx, 'EFFECT_ALLELE'] = EFFECT_ALLELE
+      df_meta_input.loc[idx, 'NON_EFFECT_ALLELE'] = NON_EFFECT_ALLELE
+      df_meta_input.loc[idx, 'BETA'] *= -1
       
     elif sign_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == 1:
-      df_meta.loc[idx, 'EFFECT_ALLELE'] = EFFECT_ALLELE
-      df_meta.loc[idx, 'NON_EFFECT_ALLELE'] = NON_EFFECT_ALLELE
-      df_meta.loc[idx, 'BETA'] *= 1      
+      df_meta_input.loc[idx, 'EFFECT_ALLELE'] = EFFECT_ALLELE
+      df_meta_input.loc[idx, 'NON_EFFECT_ALLELE'] = NON_EFFECT_ALLELE
+      df_meta_input.loc[idx, 'BETA'] *= 1      
       
     elif sign_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == 0:
-      df_meta = df_meta.drop(idx)
+      df_meta_input = df_meta_input.drop(idx)
   
   li_EFFECT_ALLELE.append(EFFECT_ALLELE)
   li_NON_EFFECT_ALLELE.append(NON_EFFECT_ALLELE)
@@ -175,12 +175,12 @@ li_BETA_META = []
 li_STD_BETA_META = []
 
 for j in range(len(li_PHENOTYPE_SNP)):
-  condition = (df_meta.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
+  condition = (df_meta_input.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta_input.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
   sum_w_i = 0
   sum_w_i_beta_i = 0
   
-  if len(df_meta[condition]) > 1:
-    for idx, row in df_meta[condition].iterrows():
+  if len(df_meta_input[condition]) > 1:
+    for idx, row in df_meta_input[condition].iterrows():
       w_i = row['BETA_SE']**(-2)
       sum_w_i += w_i
       sum_w_i_beta_i += (w_i * row['BETA'])
@@ -188,9 +188,9 @@ for j in range(len(li_PHENOTYPE_SNP)):
     li_BETA_META.append(sum_w_i_beta_i/sum_w_i)
     li_STD_BETA_META.append(sum_w_i**-0.5)
   
-  elif len(df_meta[condition]) == 1:
-    li_BETA_META.append(df_meta[condition]['BETA'].values[0])
-    li_STD_BETA_META.append(df_meta[condition]['BETA_SE'].values[0])
+  elif len(df_meta_input[condition]) == 1:
+    li_BETA_META.append(df_meta_input[condition]['BETA'].values[0])
+    li_STD_BETA_META.append(df_meta_input[condition]['BETA_SE'].values[0])
  
 # Calculation - Cochran's Q statistic
 # li_Q : List of Cochran's Q statistic corresponding to li_PHENOTYPE_SNP
@@ -198,17 +198,17 @@ for j in range(len(li_PHENOTYPE_SNP)):
 li_Q = []
 
 for j in range(len(li_PHENOTYPE_SNP)):
-  condition = (df_meta.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
+  condition = (df_meta_input.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta_input.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
   Q = 0
   
-  if len(df_meta[condition]) > 1:
-    for idx, row in df_meta[condition].iterrows():
+  if len(df_meta_input[condition]) > 1:
+    for idx, row in df_meta_input[condition].iterrows():
       w_i = row['BETA_SE']**(-2)
       delta_beta = (row['BETA'] - li_BETA_META[j])    
       Q += (w_i * (delta_beta**2))
     li_Q.append(Q)
   
-  elif len(df_meta[condition]) == 1:
+  elif len(df_meta_input[condition]) == 1:
     li_Q.append('No Meta')
 
 # Calculation - Higgin's heterogeneity metric
@@ -217,11 +217,11 @@ for j in range(len(li_PHENOTYPE_SNP)):
 li_I_square = []
 
 for j in range(len(li_PHENOTYPE_SNP)):
-  condition = (df_meta.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
+  condition = (df_meta_input.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta_input.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
   count = 0
   
-  if (len(df_meta[condition]) > 1) & (li_Q[j] != 0):
-    for idx, row in df_meta[condition].iterrows():
+  if (len(df_meta_input[condition]) > 1) & (li_Q[j] != 0):
+    for idx, row in df_meta_input[condition].iterrows():
       count += 1
     
     I_square = 100 * (li_Q[j] - (count - 1)) / (li_Q[j])
@@ -236,14 +236,14 @@ for j in range(len(li_PHENOTYPE_SNP)):
 
 for j in range(len(li_PHENOTYPE_SNP)):
   if li_I_square[j] != 'No Meta': 
-    condition = (df_meta.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
+    condition = (df_meta_input.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta_input.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
     
-    if (li_I_square[j] >= 50) & (len(df_meta[condition]) > 1):
+    if (li_I_square[j] >= 50) & (len(df_meta_input[condition]) > 1):
       sum_w_i = 0
       sum_w_i_square = 0
       count = 0
       
-      for idx, row in df_meta[condition].iterrows():
+      for idx, row in df_meta_input[condition].iterrows():
         w_i = row['BETA_SE']**(-2)
         sum_w_i += w_i
         sum_w_i_square += w_i**2
@@ -255,7 +255,7 @@ for j in range(len(li_PHENOTYPE_SNP)):
       sum_w_i_R_beta_i = 0
       sum_w_i_R = 0
       
-      for idx2, row2 in df_meta[condition].iterrows():
+      for idx2, row2 in df_meta_input[condition].iterrows():
         w_i = row2['BETA_SE']**(-2)
         w_i_R = 1/ (1/w_i + tau_square)
         sum_w_i_R_beta_i += w_i_R * row2['BETA']
@@ -277,8 +277,8 @@ for j in range(len(li_PHENOTYPE_SNP)):
     li_p_value.append(p_value)
   
   else:
-    condition = (df_meta.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
-    li_p_value.append(df_meta[condition]['P_VAL'].values[0])
+    condition = (df_meta_input.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta_input.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
+    li_p_value.append(df_meta_input[condition]['P_VAL'].values[0])
 
 # Output file - Meta Analysis
 # df_meta_output : Data Frame of Meta-analysis Result Ouput File
