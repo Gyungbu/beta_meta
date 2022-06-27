@@ -91,7 +91,7 @@ for file in file_list:
   else:
     print('Please check the columns of the input file! (Ex, PHENOTYPE, SNP, EFFECT_ALLELE, NON_EFFECT_ALLELE, BETA, BETA_SE, OR, OR_95%CI_LOWER, OR_95%CI_UPPER, P_VAL)')  
 
-# Remove Spaces / Deduplication
+# Remove Spaces / Deduplication - df_meta_input
 
 df_meta_input['PHENOTYPE'] = df_meta_input['PHENOTYPE'].str.strip()
 df_meta_input['SNP'] = df_meta_input['SNP'].str.strip()
@@ -100,7 +100,7 @@ df_meta_input['NON_EFFECT_ALLELE'] = df_meta_input['NON_EFFECT_ALLELE'].str.stri
 
 df_meta_input = df_meta_input.drop_duplicates(li_column)
 
-# Calculation - BETA & BETA_SE
+# Calculation - BETA & BETA_SE from Odds ratio & 95% CI
 # li_BETA : List of Beta corresponding to df_meta_input
 # li_BETA_SE : List of Beta Standard Error corresponding to df_meta_input
 
@@ -122,7 +122,7 @@ for idx, row in df_meta_input.iterrows():
 df_meta_input['BETA'] = li_BETA
 df_meta_input['BETA_SE'] = li_BETA_SE
 
-# Remove the NaN Data & Unnecessary Columns
+# Remove the NaN Data & Unnecessary Columns - df_meta_input
 
 df_meta_input = df_meta_input.drop(['OR', 'OR_95%CI_LOWER', 'OR_95%CI_UPPER'], axis=1)
 df_meta_input = df_meta_input.dropna()
@@ -191,7 +191,8 @@ for j in range(len(li_PHENOTYPE_SNP)):
   elif len(df_meta_input[condition]) == 1:
     li_BETA_META.append(df_meta_input[condition]['BETA'].values[0])
     li_STD_BETA_META.append(df_meta_input[condition]['BETA_SE'].values[0])
- 
+
+# Heterogeniety Test 
 # Calculation - Cochran's Q statistic
 # li_Q : List of Cochran's Q statistic corresponding to li_PHENOTYPE_SNP
 
