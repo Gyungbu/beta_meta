@@ -258,7 +258,7 @@ for j in range(len(li_PHENOTYPE_SNP)):
       
       for idx2, row2 in df_meta_input[condition].iterrows():
         w_i = row2['BETA_SE']**(-2)
-        w_i_R = 1/ (1/w_i + tau_square)
+        w_i_R = 1/(1/w_i + tau_square)
         sum_w_i_R_beta_i += w_i_R * row2['BETA']
         sum_w_i_R += w_i_R
         
