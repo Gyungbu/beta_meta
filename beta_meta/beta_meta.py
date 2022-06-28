@@ -46,7 +46,7 @@ def sign_effect_direction(effect_allele_study1, non_effect_allele_study1, effect
                      
   return result
   
-'''
+"""
 # Test the Function - "sign_effect_direction"
 
 print(sign_effect_direction('T', 'C', 'T', 'A'), 'result:0')
@@ -59,11 +59,14 @@ print(sign_effect_direction('A', 'T', 'G', 'C'), 'result:0')
 print(sign_effect_direction('A', 'T', 'A', 'T'), 'result:1')
 print(sign_effect_direction('A', 'T', 'T', 'A'), 'result:-1')
 
+print(sign_effect_direction('A', 'C', 'T', 'G'), 'result:1')
+print(sign_effect_direction('A', 'C', 'G', 'T'), 'result:-1')
+
 print(sign_effect_direction('G', 'C', 'G', 'C'), 'result:1')
 print(sign_effect_direction('G', 'C', 'C', 'G'), 'result:-1')
 
 print(sign_effect_direction('-', 'A', 'G', 'A'), 'result:0')
-'''
+"""
 
 # Input Folder 
 # file_list : List of File name in the Input Folder
