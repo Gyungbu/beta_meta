@@ -143,6 +143,8 @@ for idx, row in df_meta_input.iterrows():
 # li_EFFECT_ALLELE : List of Effect Allele corresponding to li_PHENOTYPE_SNP
 # li_NON_EFFECT_ALLELE : List of Non-Effect Allele corresponding to li_PHENOTYPE_SNP
 
+df_meta_input['P_VAL'] = df_meta_input['P_VAL'].astype('float64')
+
 li_EFFECT_ALLELE = []
 li_NON_EFFECT_ALLELE = []
 
