@@ -43,7 +43,7 @@ When you click the 'BetaMeta.exe' file, the application will be executed.
 
 ### <Input file - Column Description>
 	
-<span style='background-color: #fff5b1'>노랑</span>
+<mark>형광펜</mark>
 	
 * PHENOTYPE : Phenotype of the individual study.	
 * SNP : SNP of the individual study.
