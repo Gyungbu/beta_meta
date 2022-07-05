@@ -43,7 +43,6 @@ When you click the 'BetaMeta.exe' file, the application will be executed.
 
 ### <Input file - Column Description>
 	
-<mark>형광펜</mark>
 	
 * PHENOTYPE : Phenotype of the individual study.	
 * SNP : SNP of the individual study.
@@ -67,3 +66,6 @@ When you click the 'BetaMeta.exe' file, the application will be executed.
 * BH_P_VAL : BH adjusted Meta p-value for specific phenotypes, SNPs..
 * I_SQUARE : Higgin’s heterogeneity metric for specific phenotypes, SNPs.
 * Q_HET : Cochran’s Q statistic for specific phenotypes, SNPs.
+	
+	
+<mark>형광펜</mark>
