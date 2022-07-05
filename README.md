@@ -43,29 +43,29 @@ When you click the 'BetaMeta.exe' file, the application will be executed.
 
 ### <Input file - Column Description>
 	
-* `full_title` : article's title	
-* 'PHENOTYPE' : Phenotype of the individual study.	
-* SNP : SNP of the individual study.
-* EFFECT_ALLELE : Effect allele of the individual study.	
-* NON_EFFECT_ALLELE : Non-effect allele of the individual study.	
-* BETA : Effect size of the individual study.	
-* BETA_SE : Standard error of the Beta of the individual study.	
-* OR : Odds ratio of the individual study.	
-* OR_95%CI_LOWER : Lower bound of 95% Confidence interval of Odds ratio	
-* OR_95%CI_UPPER : Upper bound of 95% Confidence interval of Odds ratio  	
-* P_VAL : P-value of the individual study.
+* `full_title` : article's title
+* `PHENOTYPE` : Phenotype of the individual study.	
+* `SNP` : SNP of the individual study.
+* `EFFECT_ALLELE` : Effect allele of the individual study.	
+* `NON_EFFECT_ALLELE` : Non-effect allele of the individual study.	
+* `BETA` : Effect size of the individual study.	
+* `BETA_SE` : Standard error of the Beta of the individual study.	
+* `OR` : Odds ratio of the individual study.	
+* `OR_95%CI_LOWER` : Lower bound of 95% Confidence interval of Odds ratio	
+* `OR_95%CI_UPPER` : Upper bound of 95% Confidence interval of Odds ratio  	
+* `P_VAL` : P-value of the individual study.
 
 ### <Output file - Column Description>
-* PHENOTYPE : Phenotype of the integrated study.
-* SNP : SNP of the integrated study.
-* EFFECT_ALLELE : Effect allele of the study with the lowest p value for a specific phenotype, SNP
-* NON_EFFECT_ALLELE : Non-effect allele of the study with the lowest p value for a specific phenotype, SNP
-* BETA : Weighted average of the Effect sizes for specific phenotypes, SNPs.
-* BETA_SE : Standard error of the integrated beta for specific phenotypes, SNPs.
-* P_VAL : Meta P-value for specific phenotypes, SNPs..
-* BH_P_VAL : BH adjusted Meta p-value for specific phenotypes, SNPs..
-* I_SQUARE : Higgin’s heterogeneity metric for specific phenotypes, SNPs.
-* Q_HET : Cochran’s Q statistic for specific phenotypes, SNPs.
+* `PHENOTYPE` : Phenotype of the integrated study.
+* `SNP` : SNP of the integrated study.
+* `EFFECT_ALLELE` : Effect allele of the study with the lowest p value for a specific phenotype, SNP
+* `NON_EFFECT_ALLELE` : Non-effect allele of the study with the lowest p value for a specific phenotype, SNP
+* `BETA` : Weighted average of the Effect sizes for specific phenotypes, SNPs.
+* `BETA_SE` : Standard error of the integrated beta for specific phenotypes, SNPs.
+* `P_VAL` : Meta P-value for specific phenotypes, SNPs..
+* `BH_P_VAL` : BH adjusted Meta p-value for specific phenotypes, SNPs..
+* `I_SQUARE` : Higgin’s heterogeneity metric for specific phenotypes, SNPs.
+* `Q_HET` : Cochran’s Q statistic for specific phenotypes, SNPs.
 	
 	
 <span style="color: #ff0000;">빨강</span>,
