@@ -20,11 +20,11 @@ When Beta-Meta is executed in the following way, the 'meta_output.xlsx' file in 
 
 When you run the command below, the code will be executed.
 
-$ find -name beta_meta.py | xargs python
+	$ find -name beta_meta.py | xargs python
 
-or
+	or
 
-$ python 'The Absolute path of beta_meta.py file'
+	$ python 'The Absolute path of beta_meta.py file'
 
 2. python exe application version
 
