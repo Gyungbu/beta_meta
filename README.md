@@ -10,7 +10,7 @@ Please just download the folder below that corresponds to the version you want.
 	
 	2. python exe application version : 'beta_meta_exe'
 
-The list of required packages for python script version is shown in the 'requirements.txt' file.
+The list of required packages for 'python script version' is shown in the 'requirements.txt' file.
 
 ## How to use
 
