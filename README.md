@@ -6,17 +6,17 @@ Beta-Meta consists of two versions: python script version and exe application.
 
 Please just download the folder below that corresponds to the version you want.
 	
-	1. python script version : 'beta_meta_script'
+	1. python script version : `beta_meta_script`
 	
-	2. python exe application version : 'beta_meta_exe'
+	2. python exe application version : `beta_meta_exe`
 
-The list of required packages for 'python script version' is shown in the 'requirements.txt' file. When you run the command below, the package will be downloaded.
+The list of required packages for `python script version` is shown in the `requirements.txt` file. When you run the command below, the package will be downloaded.
 
 	$ pip install -r 'The Absolute path of beta_meta.py file'
 
 ## How to use
 
-When Beta-Meta is executed in the following way, the 'meta_output.xlsx' file in the 'output' folder is created or modified.
+When Beta-Meta is executed in the following way, the `meta_output.xlsx` file in the `output` folder is created or modified.
 
 1. python script version
 
@@ -30,15 +30,15 @@ When you run the command below, the code will be executed.
 
 2. python exe application version
 
-When you click the 'BetaMeta.exe' file, the application will be executed. 
+When you click the `BetaMeta.exe` file, the application will be executed. 
 
 
 ## Data Description
 
 ### <Input file - Precautions>
-1. All values ('PHENOTYPE', 'SNP', 'EFFECT_ALLELE', 'NON_EFFECT_ALLELE', 'P_VAL') should be written.
-2. ('BETA', 'BETA_SE') or ('OR', 'OR_95%CI_LOWER', 'OR_95%CI_UPPER') values must be written in the input file.
-3. For the same phenotype and SNP to be meta-analyzed, the values of the 'PHENOTYPE' and 'SNP' columns must have the same spacing and spelling.
+1. All values (`PHENOTYPE`, `SNP`, `EFFECT_ALLELE`, `NON_EFFECT_ALLELE`, `P_VAL`) should be written.
+2. (`BETA`, `BETA_SE`) or (`OR`, `OR_95%CI_LOWER`, `OR_95%CI_UPPER`) values must be written in the input file.
+3. For the same phenotype and SNP to be meta-analyzed, the values of the `PHENOTYPE` and `SNP` columns must have the same spacing and spelling.
 
 
 ### <Input file - Column Description>
