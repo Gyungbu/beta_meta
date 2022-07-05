@@ -16,7 +16,7 @@ The list of required packages for `python script version` is shown in the `requi
 
 ## How to use
 
-When Beta-Meta is executed in the following way, the `meta_output.xlsx` file in the `output` folder is created or modified.
+When Beta-Meta is executed as follows, the file `meta_output.xlsx` is created or modified in the `output` folder by the files in the `input' floder.
 
 1. python script version
 
