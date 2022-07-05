@@ -22,10 +22,6 @@ When Beta-Meta is executed as follows, the file `meta_output.xlsx` is created or
 
 When you run the command below, the code will be executed.
 
-	$ find -name beta_meta.py | xargs python
-
-	or
-
 	$ python beta_meta.py
 
 2. python exe application version
