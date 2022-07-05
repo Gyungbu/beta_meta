@@ -55,6 +55,7 @@ When you click the 'BetaMeta.exe' file, the application will be executed.
 * `P_VAL` : P-value of the individual study.
 
 ### <Output file - Column Description>
+	
 * `PHENOTYPE` : Phenotype of the integrated study.
 * `SNP` : SNP of the integrated study.
 * `EFFECT_ALLELE` : Effect allele of the study with the lowest p value for a specific phenotype, SNP
@@ -65,6 +66,3 @@ When you click the 'BetaMeta.exe' file, the application will be executed.
 * `BH_P_VAL` : BH adjusted Meta p-value for specific phenotypes, SNPs..
 * `I_SQUARE` : Higgin’s heterogeneity metric for specific phenotypes, SNPs.
 * `Q_HET` : Cochran’s Q statistic for specific phenotypes, SNPs.
-	
-	
-<span style="color: #ff0000;">빨강</span>,
