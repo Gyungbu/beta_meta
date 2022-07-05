@@ -43,8 +43,8 @@ When you click the 'BetaMeta.exe' file, the application will be executed.
 
 ### <Input file - Column Description>
 	
-	
-* PHENOTYPE : Phenotype of the individual study.	
+* `full_title` : article's title	
+* 'PHENOTYPE' : Phenotype of the individual study.	
 * SNP : SNP of the individual study.
 * EFFECT_ALLELE : Effect allele of the individual study.	
 * NON_EFFECT_ALLELE : Non-effect allele of the individual study.	
