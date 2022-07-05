@@ -5,7 +5,9 @@ Beta-Meta is a meta-analysis application considering heterogeneity among GWAS st
 Beta-Meta consists of two versions: python script version and exe application.
 
 Please just download the folder below that corresponds to the version you want.
+	
 	1. python script version : 'beta_meta_script'
+	
 	2. python exe application version : 'beta_meta_exe'
 
 The list of required packages for python script version is shown in the 'requirements.txt' file.
