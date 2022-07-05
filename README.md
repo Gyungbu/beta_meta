@@ -43,17 +43,16 @@ When you click the 'BetaMeta.exe' file, the application will be executed.
 
 ### <Input file - Column Description>
 	
-<mark style='background-color: #24292e'><font color= "white">  </font></mark> : Phenotype of the individual study.
-	
-	2. SNP : SNP of the individual study.
-	3. EFFECT_ALLELE : Effect allele of the individual study.
-	4. NON_EFFECT_ALLELE : Non-effect allele of the individual study.
-	5. BETA : Effect size of the individual study.
-	6. BETA_SE : Standard error of the Beta of the individual study.
-	7. OR : Odds ratio of the individual study.
-	8. OR_95%CI_LOWER : Lower bound of 95% Confidence interval of Odds ratio
-	9. OR_95%CI_UPPER : Upper bound of 95% Confidence interval of Odds ratio  
-	10. P_VAL : P-value of the individual study.
+*PHENOTYPE : Phenotype of the individual study.
+*SNP : SNP of the individual study.
+*EFFECT_ALLELE : Effect allele of the individual study.
+*NON_EFFECT_ALLELE : Non-effect allele of the individual study.
+*BETA : Effect size of the individual study.
+*BETA_SE : Standard error of the Beta of the individual study.
+*OR : Odds ratio of the individual study.
+*OR_95%CI_LOWER : Lower bound of 95% Confidence interval of Odds ratio
+*OR_95%CI_UPPER : Upper bound of 95% Confidence interval of Odds ratio  
+*P_VAL : P-value of the individual study.
 
 ### <Output file - Column Description>
 	1. PHENOTYPE : Phenotype of the integrated study.
