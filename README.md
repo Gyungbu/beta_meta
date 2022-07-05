@@ -6,9 +6,9 @@ Beta-Meta consists of two versions: python script version and exe application.
 
 Please just download the folder below that corresponds to the version you want.
 	
-	1. python script version : `beta_meta_script`
+	1. python script version : 'beta_meta_script'
 	
-	2. python exe application version : `beta_meta_exe`
+	2. python exe application version : 'beta_meta_exe'
 
 The list of required packages for `python script version` is shown in the `requirements.txt` file. When you run the command below, the package will be downloaded.
 
