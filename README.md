@@ -12,6 +12,8 @@ Please just download the folder below that corresponds to the version you want.
 
 The list of required packages for 'python script version' is shown in the 'requirements.txt' file.
 
+	$ pip install -r 'The Absolute path of beta_meta.py file'
+
 ## How to use
 
 When Beta-Meta is executed in the following way, the 'meta_output.xlsx' file in the 'output' folder is created or modified.
