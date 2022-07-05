@@ -12,7 +12,7 @@ Please just download the folder below that corresponds to the version you want.
 
 The list of required packages for `python script version` is shown in the `requirements.txt` file. When you run the command below, the package will be downloaded.
 
-	$ pip install -r 'The Absolute path of beta_meta.py file'
+	$ pip install -r 'The Absolute path of requirements.txt file'
 
 ## How to use
 
