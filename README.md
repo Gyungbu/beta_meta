@@ -36,7 +36,7 @@ When you click the 'BetaMeta.exe' file, the application will be executed.
 ## Data Description
 
 ### <Input file - Precautions>
-1. All values _('PHENOTYPE', 'SNP', 'EFFECT_ALLELE', 'NON_EFFECT_ALLELE', 'P_VAL')_ should be written.
+1. All values ('PHENOTYPE', 'SNP', 'EFFECT_ALLELE', 'NON_EFFECT_ALLELE', 'P_VAL') should be written.
 2. ('BETA', 'BETA_SE') or ('OR', 'OR_95%CI_LOWER', 'OR_95%CI_UPPER') values must be written in the input file.
 3. For the same phenotype and SNP to be meta-analyzed, the values of the 'PHENOTYPE' and 'SNP' columns must have the same spacing and spelling.
 
