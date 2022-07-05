@@ -68,4 +68,4 @@ When you click the 'BetaMeta.exe' file, the application will be executed.
 * Q_HET : Cochran’s Q statistic for specific phenotypes, SNPs.
 	
 	
-<mark>형광펜</mark>
+<span style="color:red">빨간</span> 
