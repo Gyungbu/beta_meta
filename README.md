@@ -42,7 +42,7 @@ When you click the 'BetaMeta.exe' file, the application will be executed.
 
 
 ### <Input file - Column Description>
-	1. PHENOTYPE : Phenotype of the individual study.
+	1. <span style='background-color: #f6f8fa'>PHENOTYPE</span>PHENOTYPE : Phenotype of the individual study.
 	2. SNP : SNP of the individual study.
 	3. EFFECT_ALLELE : Effect allele of the individual study.
 	4. NON_EFFECT_ALLELE : Non-effect allele of the individual study.
