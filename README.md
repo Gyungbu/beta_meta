@@ -15,6 +15,7 @@ The list of required packages for python script version is shown in the 'require
 When Beta-Meta is executed in the following way, the 'meta_output.xlsx' file in the 'output' folder is created or modified.
 
 1. python script version
+
 When you run the command below, the code will be executed.
 
 $ find -name beta_meta.py | xargs python
@@ -24,6 +25,7 @@ or
 $ python 'The Absolute path of beta_meta.py file'
 
 2. python exe application version
+
 When you click the 'BetaMeta.exe' file, the application will be executed. 
 
 
