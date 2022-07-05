@@ -12,7 +12,7 @@ Please just download the folder below that corresponds to the version you want.
 
 The list of required packages for `python script version` is shown in the `requirements.txt` file. When you run the command below, the package will be downloaded.
 
-	$ pip install -r 'The Absolute path of requirements.txt file'
+	$ pip install -r requirements.txt
 
 ## How to use
 
@@ -26,7 +26,7 @@ When you run the command below, the code will be executed.
 
 	or
 
-	$ python 'The Absolute path of beta_meta.py file'
+	$ python beta_meta.py
 
 2. python exe application version
 
