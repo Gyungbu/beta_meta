@@ -1,5 +1,7 @@
 # Beta-Meta: a meta-analysis application considering heterogeneity among genome-wide association studies
 
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
+
 Beta-Meta is a meta-analysis application considering heterogeneity among GWAS studies. It provides a step-by-step meta-analysis of GWAS in the following order: heterogeneity test, two different calculations of an effect size and a p-value based on heterogeneity, and the Benjamini-Hochberg (BH) p-value adjustment. It uses the pandas library to deal with dataframes from excel input files.
 
 Beta-Meta consists of two versions: python script version and exe application.
