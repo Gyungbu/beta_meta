@@ -2,7 +2,7 @@
 
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
 
-https://img.shields.io/badge/-Python-000000?style=flat&logo=Python
+!https://img.shields.io/badge/-Python-000000?style=flat&logo=Python
 
 ![KakaoTalk_20220608_101041824_02](https://user-images.githubusercontent.com/106565330/177439764-bd1d00c4-a553-4ec0-b75a-3222bef155c6.png)
 
