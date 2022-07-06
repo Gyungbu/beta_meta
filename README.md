@@ -5,7 +5,7 @@
 ![Numpy](https://img.shields.io/badge/-NumPy-05122A?style=flat&logo=numpy)&nbsp;
 ![Scipy](https://img.shields.io/badge/-SciPy-05122A?style=flat&logo=scipy)&nbsp;
 ![GitHub](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)&nbsp;
-![Exe](![exe-file-svgrepo-com](https://user-images.githubusercontent.com/106565330/177452146-bcc5d009-061a-40df-b55b-2d9ad7ab23bb.svg)style=flat&logo=exe)&nbsp;
+![Exe](https://img.shields.io/badge/-exe-05122A?style=flat&logo=exe)&nbsp;
 
 ![beta_meta_icon](https://user-images.githubusercontent.com/106565330/177439764-bd1d00c4-a553-4ec0-b75a-3222bef155c6.png)
 
