@@ -41,7 +41,7 @@ To run Beta-Meta,
     
     Run the command below:
 
-	$ python beta_meta.py
+		$ python beta_meta.py
     
 - For Windows:
     
