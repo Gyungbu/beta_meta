@@ -4,7 +4,6 @@
 ![Pandas](https://img.shields.io/badge/-pandas-05122A?style=flat&logo=pandas)&nbsp;
 ![Numpy](https://img.shields.io/badge/-NumPy-05122A?style=flat&logo=numpy)&nbsp;
 ![Scipy](https://img.shields.io/badge/-SciPy-05122A?style=flat&logo=scipy)&nbsp;
-![SVG](https://img.shields.io/badge/-SVG-05122A?style=flat&logo=svg)&nbsp;
 ![GitHub](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)&nbsp;
 
 ![beta_meta_icon](https://user-images.githubusercontent.com/106565330/177439764-bd1d00c4-a553-4ec0-b75a-3222bef155c6.png)
