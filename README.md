@@ -7,7 +7,7 @@
 ![GitHub](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)&nbsp;
 ![Exe](https://img.shields.io/badge/-exe-05122A?style=flat&logo=exe)&nbsp;
 
-![beta_meta_icon](https://user-images.githubusercontent.com/106565330/177929354-6e918b24-fa8b-4bb0-ac02-7fe512986080.png)
+![beta_meta_icon](https://user-images.githubusercontent.com/106565330/177929679-992af204-532d-4a59-8330-27c37ed96208.png)
 
 Beta-Meta is a meta-analysis application considering heterogeneity among GWAS studies. It provides a step-by-step meta-analysis of GWAS in the following order: heterogeneity test, two different calculations of an effect size and a p-value based on heterogeneity, and the Benjamini-Hochberg (BH) p-value adjustment. It uses the pandas library to handle dataframes from an excel input file and only requires the single file to conduct a meta-analysis.
 
