@@ -3,11 +3,11 @@ import pandas as pd
 import numpy as np
 from scipy.stats import norm
  
-# Function - Calculate the sign of effect direction between meta-studies
+# Function - Check the direction of effect between meta-studies
 
 def sign_effect_direction(effect_allele_study1, non_effect_allele_study1, effect_allele_study2, non_effect_allele_study2):
   """
-  Calculate the sign of effect direction between meta-studies
+  Check the direction of effect between meta-studies
   
       Args:
           effect_allele_study1 (str): Effect allele of the study 1 for the specific phenotype and SNP
