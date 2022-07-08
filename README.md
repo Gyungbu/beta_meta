@@ -21,7 +21,7 @@ For Windows users, you may download `beta_meta_exe` folder only.
 
 For Linux users, you may download `beta_meta_script` folder and `requirements.txt` only.
 
-The list of required packages for `beta_meta_script` is shown in the `requirements.txt` file. When you run the command below, the required packages will be downloaded.(version python 3.9.7)
+The list of required packages for `beta_meta_script` is shown in the `requirements.txt` file. When you run the command below, the required packages will be downloaded. (version : 'python 3.9.7')
 
 	$ pip install -r requirements.txt
 
