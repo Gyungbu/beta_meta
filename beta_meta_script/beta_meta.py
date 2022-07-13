@@ -214,7 +214,7 @@ for j in range(len(li_PHENOTYPE_SNP)):
       Q += (w_i * (delta_beta**2))
     li_Q.append(Q)
   
-  elif len(df_meta_input[condition]) == 1:
+  elif len(df_meta_input[condition]) <= 1:
     li_Q.append('No Meta')
 
 # Calculation - Higgin's heterogeneity metric
@@ -244,7 +244,7 @@ for j in range(len(li_PHENOTYPE_SNP)):
   if li_I_square[j] != 'No Meta': 
     condition = (df_meta_input.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta_input.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
     
-    if (li_I_square[j] >= 50) & (len(df_meta_input[condition]) > 1):
+    if (li_I_square[j] >= 50):
       sum_w_i = 0
       sum_w_i_square = 0
       count = 0
