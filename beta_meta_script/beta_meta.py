@@ -68,13 +68,13 @@ print(sign_effect_direction('G', 'C', 'C', 'G'), 'result:-1')
 print(sign_effect_direction('-', 'A', 'G', 'A'), 'result:0')
 """
 
-# Input Folder 
+# Load the Input Folder 
 # file_list : List of File name in the Input Folder
 
 path_meta_data_dir = os.path.dirname(os.path.abspath(__file__)) + "/input/"
 file_list = os.listdir(path_meta_data_dir)
 
-# Column Extraction / Concat the Dataframes 
+# Column Extraction & Concat the Dataframes 
 # li_column : List of column name in the Input File
 # df_meta_input : Data frame of Input Files to be Meta-Analyzed
 
@@ -94,7 +94,7 @@ for file in file_list:
   else:
     print('Please check the columns of the input file! (Ex, PHENOTYPE, SNP, EFFECT_ALLELE, NON_EFFECT_ALLELE, BETA, BETA_SE, OR, OR_95%CI_LOWER, OR_95%CI_UPPER, P_VAL)')  
 
-# Remove Spaces / Deduplication - df_meta_input
+# Remove Spaces & Deduplication - df_meta_input
 
 df_meta_input['PHENOTYPE'] = df_meta_input['PHENOTYPE'].str.strip()
 df_meta_input['SNP'] = df_meta_input['SNP'].str.strip()
@@ -311,6 +311,8 @@ for idx, row in df_meta_output.iterrows():
 
   ascending_rank_p_val = df_meta_output.groupby('PHENOTYPE')['P_VAL'].rank(method='min', ascending=True).values[idx]
   df_meta_output.loc[idx, 'BH_P_VAL'] = df_meta_output.loc[idx, 'P_VAL'] * len(df_meta_output[condition]) / ascending_rank_p_val
+
+# Save the Output File 
   
 path_meta_output = os.path.dirname(os.path.abspath(__file__)) + "/output/meta_output.xlsx" 
 df_meta_output.to_excel(path_meta_output)
