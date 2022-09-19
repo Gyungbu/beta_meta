@@ -331,7 +331,7 @@ lower = []
 upper = []
 for j in range(len(li_PHENOTYPE_SNP)):
   if li_I_square[j] != 'No Meta':
-    text = li_PHENOTYPE_SNP[j][0] + " (I_square=" + format(li_I_square[j], ".2f") + ", Q_HET=" + format(li_Q[j], ".2f") + ", pvalue=" + '{:0.2e}'.format(li_p_value[j]) + " )"
+    text = li_PHENOTYPE_SNP[j][0] + '-' + li_PHENOTYPE_SNP[j][1] + " (I_square=" + format(li_I_square[j], ".2f") + ", Q_HET=" + format(li_Q[j], ".2f") + ", pvalue=" + '{:0.2e}'.format(li_p_value[j]) + " )"
     beta_lower = li_BETA_META[j] - 1.96 * li_STD_BETA_META[j]
     beta_upper = li_BETA_META[j] + 1.96 * li_STD_BETA_META[j]
     
