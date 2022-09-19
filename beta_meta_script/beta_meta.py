@@ -1,6 +1,10 @@
 import os
 import pandas as pd
 import numpy as np
+import matplotlib.image as mpimg
+import matplotlib.pyplot as plt
+import zepid
+from zepid.graphics import EffectMeasurePlot
 from scipy.stats import norm
  
 # Function - Check the direction of effect between meta-studies
@@ -312,9 +316,55 @@ for idx, row in df_meta_output.iterrows():
   ascending_rank_p_val = df_meta_output.groupby('PHENOTYPE')['P_VAL'].rank(method='min', ascending=True).values[idx]
   df_meta_output.loc[idx, 'BH_P_VAL'] = df_meta_output.loc[idx, 'P_VAL'] * len(df_meta_output[condition]) / ascending_rank_p_val
 
-# Save the Output File 
+# Save the Output Excel File 
   
 path_meta_output = os.path.dirname(os.path.abspath(__file__)) + "/output/meta_output.xlsx" 
 df_meta_output.to_excel(path_meta_output)
+
+# Save the Output Forest Plot
+
+path_meta_forestplot_output = os.path.dirname(os.path.abspath(__file__)) + "/output/meta_forestplot.png" 
+
+labs = []
+measure = []
+lower = []
+upper = []
+for j in range(len(li_PHENOTYPE_SNP)):
+  if li_I_square[j] != 'No Meta':
+    text = li_PHENOTYPE_SNP[j][0] + " (I_square=" + format(li_I_square[j], ".2f") + ", Q_HET=" + format(li_Q[j], ".2f") + ", pvalue=" + '{:0.2e}'.format(li_p_value[j]) + " )"
+    beta_lower = li_BETA_META[j] - 1.96 * li_STD_BETA_META[j]
+    beta_upper = li_BETA_META[j] + 1.96 * li_STD_BETA_META[j]
+    
+    labs.append(text)
+    measure.append(li_BETA_META[j])
+    lower.append(beta_lower)
+    upper.append(beta_upper)
+  
+p = EffectMeasurePlot(label=labs, effect_measure=measure, lcl=lower, ucl=upper)
+p.labels(effectmeasure='Beta')
+p.colors(pointshape="D")
+ax=p.plot(figsize=(10,5), t_adjuster=0.02)
+plt.title("Meta-analysis Results",loc="right",x=1, y=1.045)
+plt.suptitle("Beta-Meta Forest Plot",x=-0.1,y=0.98)
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['bottom'].set_visible(True)
+ax.spines['left'].set_visible(False)
+plt.savefig(path_meta_forestplot_output,bbox_inches='tight')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
