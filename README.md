@@ -53,7 +53,7 @@ To run Beta-Meta,
     When you double-click the `BetaMeta.exe` file, the application will be executed.
     
 
-When Beta-Meta is executed as above, the file `meta_output.xlsx` will be created or modified in the `output` folder.
+When Beta-Meta is executed as above, the file `meta_output.xlsx` & `meta_forestplot.png` will be created or modified in the `output` folder.
 
 ## Data Description
 
