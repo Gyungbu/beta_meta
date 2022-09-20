@@ -1,6 +1,6 @@
 # Beta-Meta: a meta-analysis application considering heterogeneity among genome-wide association studies
 
-![Python 3.9.7](https://img.shields.io/badge/-Python-3.9.7-05122A?style=flat&logo=python)&nbsp;
+![Python](https://img.shields.io/badge/-Python-05122A?style=flat&logo=python)&nbsp;
 ![Pandas](https://img.shields.io/badge/-pandas-05122A?style=flat&logo=pandas)&nbsp;
 ![Numpy](https://img.shields.io/badge/-NumPy-05122A?style=flat&logo=numpy)&nbsp;
 ![Scipy](https://img.shields.io/badge/-SciPy-05122A?style=flat&logo=scipy)&nbsp;
