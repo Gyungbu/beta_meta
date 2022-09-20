@@ -50,7 +50,7 @@ def sign_effect_direction(effect_allele_study1, non_effect_allele_study1, effect
                      
   return result
   
-
+"""
 # Test the Function - "sign_effect_direction"
 
 print(sign_effect_direction('T', 'C', 'T', 'A'), 'result:0')   #If only one EA and NEA of study1 and study2 are the same and the rest are different, the two studies are not combined.
@@ -70,7 +70,7 @@ print(sign_effect_direction('G', 'C', 'G', 'C'), 'result:1')   #If the EA and NE
 print(sign_effect_direction('G', 'C', 'C', 'G'), 'result:-1')  #If the EA and NEA in study 1 and study 2 are opposite, the beta sign changes.
 
 print(sign_effect_direction('-', 'A', 'G', 'A'), 'result:0')   #If the value of EA or NEA is not one of "A, G, T, C", the two studies are not combined.
-
+"""
 
 # Load the Input Folder 
 # file_list : List of File name in the Input Folder
