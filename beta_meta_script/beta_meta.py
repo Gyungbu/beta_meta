@@ -10,45 +10,45 @@ from scipy.stats import norm
 # Function - Check the direction of effect between meta-studies
 
 def sign_effect_direction(effect_allele_study1, non_effect_allele_study1, effect_allele_study2, non_effect_allele_study2):
-  """
-  Check the direction of effect between meta-studies
-  
-      Args:
-          effect_allele_study1 (str): Effect allele of the study 1 for the specific phenotype and SNP
-          non_effect_allele_study1 (str): Non effect allele of the study 1 for the specific phenotype and SNP
-          effect_allele_study2 (str): Effect allele of the study 2 for the specific phenotype and SNP
-          non_effect_allele_study2 (str): Non effect allele of the study 2 for the specific phenotype and SNP
-      
-      Returns:
-          result (int): Same direction (result = 1) / Opposite direction (result = -1) / Effect alleles and non-effect alleles do not match between meta-studies (result = 0)
-  """
-  result = 0
-  
-  if set([effect_allele_study1, non_effect_allele_study1, effect_allele_study2, non_effect_allele_study2]).issubset(set(['A', 'G', 'T', 'C'])):
-    set_allele_1 = set([effect_allele_study1, non_effect_allele_study1])
-    set_allele_2 = set([effect_allele_study2, non_effect_allele_study2])
-  
-    if len(set_allele_1.difference(set_allele_2)) == 1:
-      result = 0
-                   
-    elif len(set_allele_1.difference(set_allele_2)) == 0:
-      if effect_allele_study1 == effect_allele_study2:
-        result = 1
-      
-      else:
-        result = -1
-          
-    elif len(set_allele_1.difference(set_allele_2)) == 2:
-      if (set_allele_2 == set(['A', 'T'])) | (set_allele_2 == set(['G', 'C'])):
+    """
+    Check the direction of effect between meta-studies
+    
+        Args:
+            effect_allele_study1 (str): Effect allele of the study 1 for the specific phenotype and SNP
+            non_effect_allele_study1 (str): Non effect allele of the study 1 for the specific phenotype and SNP
+            effect_allele_study2 (str): Effect allele of the study 2 for the specific phenotype and SNP
+            non_effect_allele_study2 (str): Non effect allele of the study 2 for the specific phenotype and SNP
+        
+        Returns:
+            result (int): Same direction (result = 1) / Opposite direction (result = -1) / Effect alleles and non-effect alleles do not match between meta-studies (result = 0)
+    """
+    result = 0
+    
+    if set([effect_allele_study1, non_effect_allele_study1, effect_allele_study2, non_effect_allele_study2]).issubset(set(['A', 'G', 'T', 'C'])):
+      set_allele_1 = set([effect_allele_study1, non_effect_allele_study1])
+      set_allele_2 = set([effect_allele_study2, non_effect_allele_study2])
+    
+      if len(set_allele_1.difference(set_allele_2)) == 1:
         result = 0
-         
-      elif (set([effect_allele_study1, effect_allele_study2]) == set(['A', 'T'])) | (set([effect_allele_study1, effect_allele_study2]) == set(['G', 'C'])):
-        result = 1
-       
-      else:
-        result = -1
                      
-  return result
+      elif len(set_allele_1.difference(set_allele_2)) == 0:
+        if effect_allele_study1 == effect_allele_study2:
+          result = 1
+        
+        else:
+          result = -1
+            
+      elif len(set_allele_1.difference(set_allele_2)) == 2:
+        if (set_allele_2 == set(['A', 'T'])) | (set_allele_2 == set(['G', 'C'])):
+          result = 0
+           
+        elif (set([effect_allele_study1, effect_allele_study2]) == set(['A', 'T'])) | (set([effect_allele_study1, effect_allele_study2]) == set(['G', 'C'])):
+          result = 1
+         
+        else:
+          result = -1
+                       
+    return result
   
 """
 # Test the Function - "sign_effect_direction"
