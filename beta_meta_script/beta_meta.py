@@ -50,27 +50,27 @@ def sign_effect_direction(effect_allele_study1, non_effect_allele_study1, effect
                      
   return result
   
-"""
+
 # Test the Function - "sign_effect_direction"
 
-print(sign_effect_direction('T', 'C', 'T', 'A'), 'result:0')
+print(sign_effect_direction('T', 'C', 'T', 'A'), 'result:0')   #If only one EA and NEA of study1 and study2 are the same and the rest are different, the two studies are not combined.
 
-print(sign_effect_direction('A', 'G', 'A', 'G'), 'result:1')
-print(sign_effect_direction('A', 'G', 'T', 'C'), 'result:1')
-print(sign_effect_direction('A', 'G', 'C', 'T'), 'result:-1')
+print(sign_effect_direction('A', 'G', 'A', 'G'), 'result:1')   #If the EA and NEA of study1 and study2 are the same, the beta sign of each study does not change. 
+print(sign_effect_direction('A', 'G', 'T', 'C'), 'result:1')   #If EA and NEA of study1 and study2 are identical in the complementary sequence relationship, the beta sign of each study does not change.
+print(sign_effect_direction('A', 'G', 'C', 'T'), 'result:-1')  #If the EA and NEA in study 1 and study 2 are opposite in the complementary sequence relationship, the beta sign changes.
 
-print(sign_effect_direction('A', 'T', 'G', 'C'), 'result:0')
-print(sign_effect_direction('A', 'T', 'A', 'T'), 'result:1')
-print(sign_effect_direction('A', 'T', 'T', 'A'), 'result:-1')
+print(sign_effect_direction('A', 'T', 'G', 'C'), 'result:0')   #If the EA and NEA of study1 and study2 are totally different, the two studies are not combined.
+print(sign_effect_direction('A', 'T', 'A', 'T'), 'result:1')   #If the EA and NEA of study1 and study2 are the same, the beta sign of each study does not change. 
+print(sign_effect_direction('A', 'T', 'T', 'A'), 'result:-1')  #If the EA and NEA in study 1 and study 2 are opposite, the beta sign changes.
 
-print(sign_effect_direction('A', 'C', 'T', 'G'), 'result:1')
-print(sign_effect_direction('A', 'C', 'G', 'T'), 'result:-1')
+print(sign_effect_direction('A', 'C', 'T', 'G'), 'result:1')   #If EA and NEA of study1 and study2 are identical in the complementary sequence relationship, the beta sign of each study does not change.
+print(sign_effect_direction('A', 'C', 'G', 'T'), 'result:-1')  #If the EA and NEA in study 1 and study 2 are opposite in the complementary sequence relationship, the beta sign changes.
 
-print(sign_effect_direction('G', 'C', 'G', 'C'), 'result:1')
-print(sign_effect_direction('G', 'C', 'C', 'G'), 'result:-1')
+print(sign_effect_direction('G', 'C', 'G', 'C'), 'result:1')   #If the EA and NEA of study1 and study2 are the same, the beta sign of each study does not change.
+print(sign_effect_direction('G', 'C', 'C', 'G'), 'result:-1')  #If the EA and NEA in study 1 and study 2 are opposite, the beta sign changes.
 
-print(sign_effect_direction('-', 'A', 'G', 'A'), 'result:0')
-"""
+print(sign_effect_direction('-', 'A', 'G', 'A'), 'result:0')   #If the value of EA or NEA is not one of "A, G, T, C", the two studies are not combined.
+
 
 # Load the Input Folder 
 # file_list : List of File name in the Input Folder
@@ -155,8 +155,8 @@ li_NON_EFFECT_ALLELE = []
 for j in range(len(li_PHENOTYPE_SNP)):
   condition = (df_meta_input.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta_input.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
   
-  idx_min = df_meta_input[condition]['P_VAL'].idxmin()
-  EFFECT_ALLELE = df_meta_input.loc[idx_min]['EFFECT_ALLELE']
+  idx_min = df_meta_input[condition]['P_VAL'].idxmin()                 # For EA and NEA, the smallest p-value is the standard.
+  EFFECT_ALLELE = df_meta_input.loc[idx_min]['EFFECT_ALLELE']    
   NON_EFFECT_ALLELE = df_meta_input.loc[idx_min]['NON_EFFECT_ALLELE']
   
   for idx, row in df_meta_input[condition].iterrows():
