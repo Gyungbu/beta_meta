@@ -91,7 +91,7 @@ for file in file_list:
   
   if set(li_column).issubset(set(list(df_meta_input_data.columns))):
     df_meta_input_data = df_meta_input_data.loc[:, li_column]
-    df_meta_input_data = df_meta_input_data.replace({'EFFECT_ALLELE':{1:'A', 2:'C', 3:'G', 4:'T'},'NON_EFFECT_ALLELE':{1:'A', 2:'C', 3:'G', 4:'T'}})
+    df_meta_input_data = df_meta_input_data.replace({'EFFECT_ALLELE':{'a':'A', 'c':'C', 'g':'G', 't':'T'},'NON_EFFECT_ALLELE':{'a':'A', 'c':'C', 'g':'G', 't':'T'}})
   
     df_meta_input = pd.concat([df_meta_input, df_meta_input_data])
     
