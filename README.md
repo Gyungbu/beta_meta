@@ -5,8 +5,8 @@
 ![Numpy](https://img.shields.io/badge/NumPy-v1.22.4-blue.svg?style=flat&logo=numpy)&nbsp;
 ![Scipy](https://img.shields.io/badge/SciPy-v1.8.1-blue.svg?style=flat&logo=scipy)&nbsp;
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-v1.1.2-blue.svg?style=flat&logo=scikit-learn)&nbsp;
-![GitHub](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)&nbsp;
-![Exe](https://img.shields.io/badge/-exe-05122A?style=flat&logo=exe)&nbsp;
+![GitHub](https://img.shields.io/badge/GitHub-grey.svg?style=flat&logo=github)&nbsp;
+![Exe](https://img.shields.io/badge/exe-grey.svg?style=flat&logo=exe)&nbsp;
 
 ![beta_meta_icon](https://user-images.githubusercontent.com/106565330/177929679-992af204-532d-4a59-8330-27c37ed96208.png)
 
