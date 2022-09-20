@@ -1,10 +1,10 @@
 # Beta-Meta: a meta-analysis application considering heterogeneity among genome-wide association studies
 
 ![Python](https://img.shields.io/badge/Python-v3.9.7-05122A?style=flat&logo=python)&nbsp;
-![Pandas](https://img.shields.io/badge/-pandas-05122A?style=flat&logo=pandas)&nbsp;
-![Numpy](https://img.shields.io/badge/-NumPy-05122A?style=flat&logo=numpy)&nbsp;
-![Scipy](https://img.shields.io/badge/-SciPy-05122A?style=flat&logo=scipy)&nbsp;
-![scikit-learn](https://img.shields.io/badge/scikit--learn-05122A?style=flat&logo=scikit-learn)&nbsp;
+![Pandas](https://img.shields.io/badge/pandas-v1.4.2-05122A?style=flat&logo=pandas)&nbsp;
+![Numpy](https://img.shields.io/badge/NumPy-v1.22.4-05122A?style=flat&logo=numpy)&nbsp;
+![Scipy](https://img.shields.io/badge/SciPy-v1.8.1-05122A?style=flat&logo=scipy)&nbsp;
+![scikit-learn](https://img.shields.io/badge/scikit--learn-v1.1.2-05122A?style=flat&logo=scikit-learn)&nbsp;
 ![GitHub](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)&nbsp;
 ![Exe](https://img.shields.io/badge/-exe-05122A?style=flat&logo=exe)&nbsp;
 
