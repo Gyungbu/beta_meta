@@ -4,7 +4,7 @@
 ![Pandas](https://img.shields.io/badge/-pandas-05122A?style=flat&logo=pandas)&nbsp;
 ![Numpy](https://img.shields.io/badge/-NumPy-05122A?style=flat&logo=numpy)&nbsp;
 ![Scipy](https://img.shields.io/badge/-SciPy-05122A?style=flat&logo=scipy)&nbsp;
-![Matplotlib](https://img.shields.io/badge/-Matplotlib-05122A?style=flat&logo=matplotlib)&nbsp;
+![Scikit-learn](https://img.shields.io/badge/-scikit-learn-05122A?style=flat&logo=scikit-learn)&nbsp;
 ![GitHub](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)&nbsp;
 ![Exe](https://img.shields.io/badge/-exe-05122A?style=flat&logo=exe)&nbsp;
 
