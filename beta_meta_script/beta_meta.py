@@ -331,7 +331,7 @@ lower = []
 upper = []
 for j in range(len(li_PHENOTYPE_SNP)):
   if li_I_square[j] != 'No Meta':
-    text = li_PHENOTYPE_SNP[j][0] + ' - ' + li_PHENOTYPE_SNP[j][1] + " (I_square=" + format(li_I_square[j], ".2f") + ", Q_HET=" + format(li_Q[j], ".2f") + ", pvalue=" + '{:0.2e}'.format(li_p_value[j]) + ")"
+    text = li_PHENOTYPE_SNP[j][0] + ' - ' + li_PHENOTYPE_SNP[j][1]
     beta_lower = li_BETA_META[j] - 1.96 * li_STD_BETA_META[j]
     beta_upper = li_BETA_META[j] + 1.96 * li_STD_BETA_META[j]
     
@@ -344,27 +344,11 @@ p = EffectMeasurePlot(label=labs, effect_measure=measure, lcl=lower, ucl=upper)
 p.labels(effectmeasure='Beta')
 p.colors(pointshape="D")
 ax=p.plot(figsize=(10,5), t_adjuster=0.02)
-plt.title("Meta-analysis Results",loc="right",x=1, y=1.045)
-plt.suptitle("Beta-Meta Forest Plot",x=-0.1,y=0.98)
+plt.suptitle("Beta-Meta Forest Plot",x=0.35,y=0.98)
+ax.set_xticks([0])
+ax.set_xticklabels(['$0$'])
 ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
+ax.spines['left'].set_visible(False) 
 ax.spines['bottom'].set_visible(True)
-ax.spines['left'].set_visible(False)
+ax.spines['right'].set_position(('data', 0)) 
 plt.savefig(path_meta_forestplot_output,bbox_inches='tight')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
