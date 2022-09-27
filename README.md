@@ -28,7 +28,7 @@ The list of required packages for `script` is shown in the `requirements.txt` fi
 	conda install python=3.9.7
 	pip install -r ./beta_meta/requirements.txt
 
-<Warning: Do not change the file path!>
+<Warning: Do not change the file paths!>
 
 # Beta_Meta_LD : (Optional) Suggest Correlated SNP with LD=1
 ## How to use
