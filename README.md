@@ -16,7 +16,7 @@ Beta-Meta is a meta-analysis application considering heterogeneity among GWAS st
 
 Beta-Meta comes in two versions: `script` and `exe`.
 
-You can install the Beta-Meta with following code.
+You can install the Beta-Meta with following command.
 	
 	git clone https://github.com/Gyungbu/beta_meta.git
 
