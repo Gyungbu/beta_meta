@@ -49,13 +49,13 @@ To run Beta-Meta,
 
 - For script:
     
-    Run the command below for `/script/beta_meta_scritp/beta_meta.py`:
+    Run the command below in the `/script/beta_meta_scritp/` directory:
 
 		python beta_meta.py
     
 - For exe:
     
-    When you double-click the `/exe/beta_meta_exe/BetaMeta.exe` file, the application will be executed.
+    When you double-click the `/exe/beta_meta_exe/beta_meta.exe` file, the application will be executed.
     
 
 When Beta-Meta is executed as above, the file `meta_output.xlsx` & `meta_forestplot.png` will be created or modified in the `output` folder (`/script/beta_meta_scritp/output/` or `/exe/beta_meta_exe/output/`).
