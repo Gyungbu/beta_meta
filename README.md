@@ -21,19 +21,17 @@ You can install the Beta-Meta with following command.
 	git clone https://github.com/Gyungbu/beta_meta.git
 
 The list of required packages for `script` is shown in the `requirements.txt` file. When you run the command below, the required packages will be downloaded. (version : `python 3.9.7`)
-
-	cd beta_meta
 	
 	conda create -n env_beta
 	conda activate env_beta
 	conda install pip  
 	conda install python=3.9.7
-	pip install -r requirements.txt
+	pip install -r ./beta_meta/requirements.txt
 
 ## How to use
 
 ### 1. Prepare Input data
-Place the excel file of your input data in the `input` folder (`/script/beta_meta_scritp/input/` or `/exe/beta_meta_exe/input/`).
+Place the excel file of your input data in the `input` folder (`./beta_meta/script/beta_meta_script/input/` or `./beta_meta/exe/beta_meta_exe/input/`).
 
 Caveats: 
 
@@ -49,16 +47,16 @@ To run Beta-Meta,
 
 - For script:
     
-    Run the command below in the `/script/beta_meta_scritp/` directory:
+    Run the command below:
 
-		python beta_meta.py
+		python ./beta_meta/script/beta_meta_script/beta_meta.py
     
 - For exe:
     
-    When you double-click the `/exe/beta_meta_exe/beta_meta.exe` file, the application will be executed.
+    When you double-click the `./beta_meta/exe/beta_meta_exe/beta_meta.exe` file, the application will be executed.
     
 
-When Beta-Meta is executed as above, the file `meta_output.xlsx` & `meta_forestplot.png` will be created or modified in the `output` folder (`/script/beta_meta_scritp/output/` or `/exe/beta_meta_exe/output/`).
+When Beta-Meta is executed as above, the file `meta_output.xlsx` & `meta_forestplot.png` will be created or modified in the `output` folder (`./beta_meta/script/beta_meta_script/output/` or `./beta_meta/exe/beta_meta_exe/output/` for script and exe version respectively).
 
 ## Data Description
 
