@@ -219,7 +219,7 @@ for j in range(len(li_PHENOTYPE_SNP)):
     li_Q.append(Q)
   
   elif len(df_meta_input[condition]) <= 1:
-    li_Q.append('No Meta')
+    li_Q.append('Unprocessed')
 
 # Calculation - Higgin's heterogeneity metric
 # li_I_square : List of Higgin's heterogeneity metric corresponding to li_PHENOTYPE_SNP
@@ -238,14 +238,14 @@ for j in range(len(li_PHENOTYPE_SNP)):
     li_I_square.append(max(I_square,0))
     
   else: 
-    li_I_square.append('No Meta')
+    li_I_square.append('Unprocessed')
 
 # Calculation - Weighted average of the effect sizes Modification - Random Effect Model
 # li_BETA_META : List of Weighted average of the effect sizes corrected by a Random Effect Model
 # li_STD_BETA_META : List of Standard Error of Weighted average of the effect sizes corrected by a Random Effect Model
 
 for j in range(len(li_PHENOTYPE_SNP)):
-  if li_I_square[j] != 'No Meta': 
+  if li_I_square[j] != 'Unprocessed': 
     condition = (df_meta_input.SNP == li_PHENOTYPE_SNP[j][1]) & (df_meta_input.PHENOTYPE == li_PHENOTYPE_SNP[j][0]) 
     
     if (li_I_square[j] >= 50):
@@ -280,7 +280,7 @@ for j in range(len(li_PHENOTYPE_SNP)):
 li_p_value = []
 
 for j in range(len(li_PHENOTYPE_SNP)):
-  if li_I_square[j] != 'No Meta': 
+  if li_I_square[j] != 'Unprocessed': 
     Z = li_BETA_META[j] / li_STD_BETA_META[j]
     p_value = 2 * norm.cdf(-abs(Z))
     
@@ -330,7 +330,7 @@ measure = []
 lower = []
 upper = []
 for j in range(len(li_PHENOTYPE_SNP)):
-  if li_I_square[j] != 'No Meta':
+  if li_I_square[j] != 'Unprocessed':
     text = li_PHENOTYPE_SNP[j][0] + ' - ' + li_PHENOTYPE_SNP[j][1]
     beta_lower = li_BETA_META[j] - 1.96 * li_STD_BETA_META[j]
     beta_upper = li_BETA_META[j] + 1.96 * li_STD_BETA_META[j]

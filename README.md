@@ -67,7 +67,7 @@ Caveats:
 2. Either (`BETA`, `BETA_SE`) or (`OR`, `OR_95%CI_LOWER`, `OR_95%CI_UPPER`) values must be also written.
 3. As Beta-Meta calculates SNP-phenotype associations separately, it is acceptable to include as many phenotypes as desired in the single input file. The ones (in `PHENOTYPE` and `SNP` columns) to be integrated must have exactly the same spelling (including spaces) as Beta-Meta matches exact phenotype and SNP.
 4. Beta-Meta deals with strand flipping and provides the direction of effect size relative to the same allele. When the effect and the non-effect allele are inverted between the individual studies, this can also be resolved automatically by changing the sign of the normalized effect.
-5. When only one study for a certain SNP-phenotype association is provided, ‘No Meta’ will be shown in the `I_SQUARE`, `Q_HET` columns in the output file.
+5. When only one study for a certain SNP-phenotype association is provided, ‘Unprocessed’ will be shown in the `I_SQUARE`, `Q_HET` columns in the output file.
 6. If above not possible, Beta-Meta will remove them from file and will not conduct a meta-analysis for them.
 
 ### 2. Run Beta_Meta
