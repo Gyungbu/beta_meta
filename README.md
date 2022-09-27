@@ -31,7 +31,7 @@ The list of required packages for `script` is shown in the `requirements.txt` fi
 ## How to use
 
 ### 1. Prepare Input data
-Place the excel file of your input data in the `input` folder(`beta_meta_scritp/input/` or `beta_meta_exe/input/`).
+Place the excel file of your input data in the `input` folder (`beta_meta_scritp/input/` or `beta_meta_exe/input/`).
 
 Caveats: 
 
@@ -49,7 +49,7 @@ To run Beta-Meta,
     
     Run the command below:
 
-		 python beta_meta.py
+		python beta_meta.py
     
 - For exe:
     
