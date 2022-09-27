@@ -21,7 +21,8 @@ You can install the Beta-Meta with following command.
 	git clone https://github.com/Gyungbu/beta_meta.git
 
 The list of required packages for `script` is shown in the `requirements.txt` file. When you run the command below, the required packages will be downloaded. (version : `python 3.9.7`)
-
+	cd beta_meta
+	
 	conda create -n env_beta
 	conda activate env_beta
 	conda install pip  
