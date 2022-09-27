@@ -73,13 +73,13 @@ Caveats:
 ### 2. Run Beta_Meta
 To run Beta_Meta,
 
-- For script:
+- For script version:
     
     Run the command below:
 
 		python ./beta_meta/script/beta_meta_script/beta_meta.py
     
-- For exe:
+- For exe version:
     
     When you double-click the `./beta_meta/exe/beta_meta_exe/beta_meta.exe` file, the application will be executed.
     
