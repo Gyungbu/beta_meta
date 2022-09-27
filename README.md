@@ -31,7 +31,7 @@ The list of required packages for `script` is shown in the `requirements.txt` fi
 ## How to use
 
 ### 1. Prepare Input data
-Place the excel file of your input data in the `input` folder (`beta_meta_scritp/input/` or `beta_meta_exe/input/`).
+Place the excel file of your input data in the `input` folder (`/script/beta_meta_scritp/input/` or `/exe/beta_meta_exe/input/`).
 
 Caveats: 
 
@@ -47,16 +47,16 @@ To run Beta-Meta,
 
 - For script:
     
-    Run the command below:
+    Run the command below for `/script/beta_meta_scritp/beta_meta.py`:
 
 		python beta_meta.py
     
 - For exe:
     
-    When you double-click the `BetaMeta.exe` file, the application will be executed.
+    When you double-click the `/exe/beta_meta_exe/BetaMeta.exe` file, the application will be executed.
     
 
-When Beta-Meta is executed as above, the file `meta_output.xlsx` & `meta_forestplot.png` will be created or modified in the `output` folder.
+When Beta-Meta is executed as above, the file `meta_output.xlsx` & `meta_forestplot.png` will be created or modified in the `output` folder (`/script/beta_meta_scritp/output/` or `/exe/beta_meta_exe/output/`).
 
 ## Data Description
 
