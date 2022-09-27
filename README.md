@@ -14,7 +14,7 @@ Beta-Meta is a meta-analysis application considering heterogeneity among GWAS st
 
 ## Installation
 
-Beta-Meta comes in two versions: `script` and `exe`.
+Beta-Meta comes in two versions: `script` version and `exe` version.
 
 You can install the Beta-Meta with following command.
 	
@@ -28,28 +28,28 @@ The list of required packages for `script` is shown in the `requirements.txt` fi
 	conda install python=3.9.7
 	pip install -r ./beta_meta/requirements.txt
 
-# Beta_Meta_LD : Suggest Correlated SNP with LD=1
+# Beta_Meta_LD (Optional) : Suggest Correlated SNP
 ## How to use
 
 ### 1. Prepare Input data
-Place the txt file of your input data in the `input` folder (`./beta_meta/script/beta_meta_LD_script/input/` or `./beta_meta/exe/beta_meta_LD_exe/input/` for script and exe version respectively).
+Place the `input_SNPs.txt` file of your input data in the `input` folder (`./beta_meta/script/beta_meta_LD_script/input/` or `./beta_meta/exe/beta_meta_LD_exe/input/` for script and exe version respectively).
 
 Caveats: 
 
 1. Write down rs_num to search for correlated SNPs.
 2. Separate rs_num by enter.
-3. You have to istall R program. 
+3. You have to install the R program. 
 
 ### 2. Run Beta_Meta_LD
 To run Beta_Meta_LD,
 
-- For script:
+- For script version:
     
     Run the command below:
 
 		python ./beta_meta/script/beta_meta_LD_script/haploR.py
     
-- For exe:
+- For exe version:
     
     When you double-click the `./beta_meta/exe/beta_meta_LD_exe/haploR.exe` file, the application will be executed.
 
