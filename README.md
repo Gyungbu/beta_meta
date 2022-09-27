@@ -28,7 +28,7 @@ The list of required packages for `script` is shown in the `requirements.txt` fi
 	conda install python=3.9.7
 	pip install -r ./beta_meta/requirements.txt
 
-# Beta_Meta_LD (Optional) : Suggest Correlated SNP
+# Beta_Meta_LD ##: (Optional) Suggest Correlated SNP with LD=1
 ## How to use
 
 ### 1. Prepare Input data
@@ -55,7 +55,7 @@ To run Beta_Meta_LD,
 
 When Beta_Meta_LD is executed as above, the file `correlated_with_{rs_num}.txt` will be created or modified in the `output` folder (`./beta_meta/script/beta_meta_LD_script/output/` or `./beta_meta/exe/beta_meta_LD_exe/output/` for script and exe version respectively).
 
-# Beta_Meta : Meta-analysis 
+# Beta_Meta ##: Meta-analysis 
 ## How to use
 
 ### 1. Prepare Input data
