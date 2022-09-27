@@ -12,24 +12,26 @@
 
 Beta-Meta is a meta-analysis application considering heterogeneity among GWAS studies. It provides a step-by-step meta-analysis of GWAS in the following order: heterogeneity test, two different calculations of an effect size and a p-value based on heterogeneity, and the Benjamini-Hochberg (BH) p-value adjustment. It uses the pandas library to handle dataframes from an excel input file and only requires the single file to conduct a meta-analysis.
 
-## Download
+## Installation
 
-Beta-Meta comes in two versions: `beta_meta_script` for Linux and `beta_meta_exe` for Windows.
+Beta-Meta comes in two versions: `script` and `exe`.
 
-It is not necessary to download all of the folders above to run Beta-Meta (*but it is fine if you do*). 
+You can install the Beta-Meta with following code.
+	
+	git clone https://github.com/Gyungbu/beta_meta.git
 
-For Windows users, you may download `beta_meta_exe` folder only. 
+The list of required packages for `script` is shown in the `requirements.txt` file. When you run the command below, the required packages will be downloaded. (version : `python 3.9.7`)
 
-For Linux users, you may download `beta_meta_script` folder and `requirements.txt` only.
-
-The list of required packages for `beta_meta_script` is shown in the `requirements.txt` file. When you run the command below, the required packages will be downloaded. (version : `python 3.9.7`)
-
-	$ pip install -r requirements.txt
+	conda create -n env_beta
+	conda activate env_beta
+	conda install pip  
+	conda install python=3.9.7
+	pip install -r requirements.txt
 
 ## How to use
 
 ### 1. Prepare Input data
-Place the excel file of your input data in the `input` folder.
+Place the excel file of your input data in the `input` folder(`beta_meta_scritp/input/` or `beta_meta_exe/input/`).
 
 Caveats: 
 
@@ -43,13 +45,13 @@ Caveats:
 ### 2. Run Beta-Meta
 To run Beta-Meta,
 
-- For Linux:
+- For script:
     
     Run the command below:
 
-		$ python beta_meta.py
+		 python beta_meta.py
     
-- For Windows:
+- For exe:
     
     When you double-click the `BetaMeta.exe` file, the application will be executed.
     
