@@ -5,7 +5,7 @@ if ( require("haploR") ) {
     install.packages("haploR", repos = "http://cran.us.r-project.org")
 }
 
-input_txt <- paste0(getwd(),"/input/input_SNPs.txt")
+input_txt <- paste0("./input/input_SNPs.txt")
 rsIDs <- readLines(input_txt)
 
 for (x in rsIDs) {
@@ -13,6 +13,6 @@ for (x in rsIDs) {
   # print(xx)
   subset.LD1 <- xx[c("rsID")]
   # print(subset.LD1)
-  txtfile <- paste0(getwd(),"/output/correlated_with_",x,".txt")
+  txtfile <- paste0("./output/correlated_with_",x,".txt")
   write.table(subset.LD1, file=txtfile, quote=FALSE, sep="\t")
 }
