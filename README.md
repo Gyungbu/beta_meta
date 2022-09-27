@@ -28,10 +28,38 @@ The list of required packages for `script` is shown in the `requirements.txt` fi
 	conda install python=3.9.7
 	pip install -r ./beta_meta/requirements.txt
 
+# Beta_Meta_LD : Suggest Correlated SNP with LD=1
 ## How to use
 
 ### 1. Prepare Input data
-Place the excel file of your input data in the `input` folder (`./beta_meta/script/beta_meta_script/input/` or `./beta_meta/exe/beta_meta_exe/input/`).
+Place the txt file of your input data in the `input` folder (`./beta_meta/script/beta_meta_LD_script/input/` or `./beta_meta/exe/beta_meta_LD_exe/input/` for script and exe version respectively).
+
+Caveats: 
+
+1. Write down rs_num to search for correlated SNPs.
+2. Separate rs_num by enter.
+3. You have to istall R program. 
+
+### 2. Run Beta_Meta_LD
+To run Beta_Meta_LD,
+
+- For script:
+    
+    Run the command below:
+
+		python ./beta_meta/script/beta_meta_LD_script/haploR.py
+    
+- For exe:
+    
+    When you double-click the `./beta_meta/exe/beta_meta_LD_exe/haploR.exe` file, the application will be executed.
+
+When Beta_Meta_LD is executed as above, the file `correlated_with_{rs_num}.txt` will be created or modified in the `output` folder (`./beta_meta/script/beta_meta_LD_script/output/` or `./beta_meta/exe/beta_meta_LD_exe/output/` for script and exe version respectively).
+
+# Beta_Meta : Meta-analysis 
+## How to use
+
+### 1. Prepare Input data
+Place the excel file of your input data in the `input` folder (`./beta_meta/script/beta_meta_script/input/` or `./beta_meta/exe/beta_meta_exe/input/` for script and exe version respectively).
 
 Caveats: 
 
@@ -42,8 +70,8 @@ Caveats:
 5. When only one study for a certain SNP-phenotype association is provided, ‘No Meta’ will be shown in the `I_SQUARE`, `Q_HET` columns in the output file.
 6. If above not possible, Beta-Meta will remove them from file and will not conduct a meta-analysis for them.
 
-### 2. Run Beta-Meta
-To run Beta-Meta,
+### 2. Run Beta_Meta
+To run Beta_Meta,
 
 - For script:
     
