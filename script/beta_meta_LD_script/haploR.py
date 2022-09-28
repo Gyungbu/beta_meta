@@ -13,7 +13,7 @@ def findfile(name, path):
     return _li_file_path
 
 if sys.platform.startswith('win32'):
-  li_file_path = findfile("Rscript", "C:/") + findfile("Rscript", "D:/") + findfile("Rscript", "/")
+  li_file_path = findfile("Rscript", "C:/") + findfile("Rscript", "D:/") 
 
   for i in range(len(li_file_path)):
     try:
