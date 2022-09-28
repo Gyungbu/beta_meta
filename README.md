@@ -26,6 +26,7 @@ The list of required packages for `script` is shown in the `requirements.txt` fi
 	conda activate env_beta
 	conda install pip  
 	conda install python=3.9.7
+	conda install -c conda-forge r-base=4.1.0 r-essentials
 	pip install -r ./beta_meta/requirements.txt
 
 <Warning: Do not change the file paths!>
