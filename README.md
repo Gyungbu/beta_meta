@@ -30,7 +30,7 @@ The list of required packages for `script` is shown in the `requirements.txt` fi
 
 <Warning: Do not change the file paths!>
 
-# Beta_Meta_LD : (Optional) Suggest Correlated SNP with LD=1
+# Beta_Meta_LD : (Optional) LD Calculation
 ## How to use
 
 ### 1. Prepare Input data
@@ -38,9 +38,8 @@ Place the `input_SNPs.txt` file of your input data in the `input` folder (`./be
 
 Caveats: 
 
-1. Write down rs_num to search for correlated SNPs.
-2. Separate rs_num by enter.
-3. You have to install the R program. 
+1. Write down one refSNP id (e.g. rs123123) per line to search for correlated SNPs.
+2. You have to install the R program before running Beta_Meta_LD. 
 
 ### 2. Run Beta_Meta_LD
 To run Beta_Meta_LD,
@@ -55,7 +54,7 @@ To run Beta_Meta_LD,
     
     When you double-click the `./beta_meta/exe/beta_meta_LD_exe/haploR.exe` file, the application will be executed.
 
-When Beta_Meta_LD is executed as above, the file `correlated_with_{rs_num}.txt` will be created or modified in the `output` folder (`./beta_meta/script/beta_meta_LD_script/output/` or `./beta_meta/exe/beta_meta_LD_exe/output/` for script and exe version respectively).
+When Beta_Meta_LD is executed as above, the file `correlated_with_{refSNP id}.txt` will be created or modified in the `output` folder (`./beta_meta/script/beta_meta_LD_script/output/` or `./beta_meta/exe/beta_meta_LD_exe/output/` for script and exe version respectively).
 
 # Beta_Meta : Meta-analysis 
 ## How to use
