@@ -71,7 +71,7 @@ print(sign_effect_direction('G', 'C', 'C', 'G'), 'result:-1')  #If the EA and NE
 
 print(sign_effect_direction('-', 'A', 'G', 'A'), 'result:0')   #If the value of EA or NEA is not one of "A, G, T, C", the two studies are not combined.
 """
-
+ 
 # Load the Input Folder 
 # file_list : List of File name in the Input Folder
 
@@ -106,6 +106,9 @@ df_meta_input['EFFECT_ALLELE'] = df_meta_input['EFFECT_ALLELE'].str.strip()
 df_meta_input['NON_EFFECT_ALLELE'] = df_meta_input['NON_EFFECT_ALLELE'].str.strip()
 
 df_meta_input = df_meta_input.drop_duplicates(li_column)
+
+if not (set(list(df_meta_input['EFFECT_ALLELE'])).issubset(set(['A', 'G', 'T', 'C'])) & set(list(df_meta_input['NON_EFFECT_ALLELE'])).issubset(set(['A', 'G', 'T', 'C']))):
+  print('Check the values of EFFECT_ALLELE and NON_EFFECT_ALLELE. The values should be in the form of (A, G, T, C)!')
 
 # Calculation - BETA & BETA_SE from Odds ratio & 95% CI
 # li_BETA : List of Beta corresponding to df_meta_input
