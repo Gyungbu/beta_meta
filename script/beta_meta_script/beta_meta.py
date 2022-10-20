@@ -131,7 +131,7 @@ for idx, row in df_meta_input.iterrows():
         li_BETA_SE.append(row['BETA_SE'])
    
   except:
-      print("Either (BETA, BETA_SE) or (OR, OR_95%CI_LOWER, OR_95%CI_UPPER) values must be also written as numbers!") 
+      print("Either (BETA, BETA_SE) or (OR, OR_95%CI_LOWER, OR_95%CI_UPPER) values must also be written as numbers!") 
       quit()
       
 df_meta_input['BETA'] = li_BETA
