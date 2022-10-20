@@ -97,7 +97,7 @@ for file in file_list:
     
   else:
     print('Please check the columns of the input file! (Ex, PHENOTYPE, SNP, EFFECT_ALLELE, NON_EFFECT_ALLELE, BETA, BETA_SE, OR, OR_95%CI_LOWER, OR_95%CI_UPPER, P_VAL)')  
-
+    quit()
 # Remove Spaces & Deduplication - df_meta_input
 
 df_meta_input['PHENOTYPE'] = df_meta_input['PHENOTYPE'].str.strip()
@@ -115,17 +115,22 @@ li_BETA = []
 li_BETA_SE = []
 
 for idx, row in df_meta_input.iterrows():
-  if (np.isnan(row['OR']) == False) & (np.isnan(row['OR_95%CI_LOWER']) == False) & (np.isnan(row['OR_95%CI_UPPER']) == False):
-    Beta = np.log(row['OR'])
-    Beta_SE = (np.log(row['OR_95%CI_UPPER']) - np.log(row['OR_95%CI_LOWER']))/3.92 
-    
-    li_BETA.append(Beta)
-    li_BETA_SE.append(Beta_SE)
-    
-  else:
-    li_BETA.append(row['BETA'])
-    li_BETA_SE.append(row['BETA_SE'])
-    
+  try:
+      if (np.isnan(row['OR']) == False) & (np.isnan(row['OR_95%CI_LOWER']) == False) & (np.isnan(row['OR_95%CI_UPPER']) == False):
+        Beta = np.log(row['OR'])
+        Beta_SE = (np.log(row['OR_95%CI_UPPER']) - np.log(row['OR_95%CI_LOWER']))/3.92 
+        
+        li_BETA.append(Beta)
+        li_BETA_SE.append(Beta_SE)
+        
+      else:
+        li_BETA.append(row['BETA'])
+        li_BETA_SE.append(row['BETA_SE'])
+   
+  except:
+      print("Either (BETA, BETA_SE) or (OR, OR_95%CI_LOWER, OR_95%CI_UPPER) values must be also written as numbers!") 
+      quit()
+      
 df_meta_input['BETA'] = li_BETA
 df_meta_input['BETA_SE'] = li_BETA_SE
 
