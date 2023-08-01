@@ -8,9 +8,30 @@ import sys
 from zepid.graphics import EffectMeasurePlot
 from scipy.stats import norm
 
-# Common Functions
+#-------------------------------------------------------
+# Common Function
+#-------------------------------------------------------
+def WriteLog(functionname, msg, type='INFO', fplog=None):
+    #strmsg = "[%s][%s][%s] %s\n" % (datetime.datetime.now(), type, functionname, msg)
+    #if( DEBUGMODE ): 
+    #    print(strmsg)
+    #else:
+    #    if( fplog != None ):
+    #        fplog.write(strmsg)
+    
+    head = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    writestr = f"[{head}][{functionname}] {msg}\n"
+    #if( DEBUGMODE ):
+    if( True ):
+        #print(message)
+        writestr = f"[{functionname}] {msg}\n"
+        print(writestr)
+        
+    if( fplog != None ):
+        fplog.write(writestr)
+        fplog.flush()
 
-def sign_effect_direction(effect_allele_study1, non_effect_allele_study1, effect_allele_study2, non_effect_allele_study2):
+def cal_sign_effect_direction(effect_allele_study1, non_effect_allele_study1, effect_allele_study2, non_effect_allele_study2):
     """
     Check the direction of effect between meta-studies
     
@@ -22,7 +43,7 @@ def sign_effect_direction(effect_allele_study1, non_effect_allele_study1, effect
         
         Returns:
             result (int): Same direction (result = 1) / Opposite direction (result = -1) / Effect alleles and non-effect alleles do not match between meta-studies (result = 0)
-    """
+    """    
     result = 0
     
     if set([effect_allele_study1, non_effect_allele_study1, effect_allele_study2, non_effect_allele_study2]).issubset(set(['A', 'G', 'T', 'C'])):
@@ -52,25 +73,25 @@ def sign_effect_direction(effect_allele_study1, non_effect_allele_study1, effect
     return result
   
 """
-# Test the Function - "sign_effect_direction"
+# Test the Function - "cal_sign_effect_direction"
 
-print(sign_effect_direction('T', 'C', 'T', 'A'), 'result:0')   #If only one EA and NEA of study1 and study2 are the same and the rest are different, the two studies are not combined.
+print(cal_sign_effect_direction('T', 'C', 'T', 'A'), 'result:0')   #If only one EA and NEA of study1 and study2 are the same and the rest are different, the two studies are not combined.
 
-print(sign_effect_direction('A', 'G', 'A', 'G'), 'result:1')   #If the EA and NEA of study1 and study2 are the same, the beta sign of each study does not change. 
-print(sign_effect_direction('A', 'G', 'T', 'C'), 'result:1')   #If EA and NEA of study1 and study2 are identical in the complementary sequence relationship, the beta sign of each study does not change.
-print(sign_effect_direction('A', 'G', 'C', 'T'), 'result:-1')  #If the EA and NEA in study 1 and study 2 are opposite in the complementary sequence relationship, the beta sign changes.
+print(cal_sign_effect_direction('A', 'G', 'A', 'G'), 'result:1')   #If the EA and NEA of study1 and study2 are the same, the beta sign of each study does not change. 
+print(cal_sign_effect_direction('A', 'G', 'T', 'C'), 'result:1')   #If EA and NEA of study1 and study2 are identical in the complementary sequence relationship, the beta sign of each study does not change.
+print(cal_sign_effect_direction('A', 'G', 'C', 'T'), 'result:-1')  #If the EA and NEA in study 1 and study 2 are opposite in the complementary sequence relationship, the beta sign changes.
 
-print(sign_effect_direction('A', 'T', 'G', 'C'), 'result:0')   #If the EA and NEA of study1 and study2 are totally different, the two studies are not combined.
-print(sign_effect_direction('A', 'T', 'A', 'T'), 'result:1')   #If the EA and NEA of study1 and study2 are the same, the beta sign of each study does not change. 
-print(sign_effect_direction('A', 'T', 'T', 'A'), 'result:-1')  #If the EA and NEA in study 1 and study 2 are opposite, the beta sign changes.
+print(cal_sign_effect_direction('A', 'T', 'G', 'C'), 'result:0')   #If the EA and NEA of study1 and study2 are totally different, the two studies are not combined.
+print(cal_sign_effect_direction('A', 'T', 'A', 'T'), 'result:1')   #If the EA and NEA of study1 and study2 are the same, the beta sign of each study does not change. 
+print(cal_sign_effect_direction('A', 'T', 'T', 'A'), 'result:-1')  #If the EA and NEA in study 1 and study 2 are opposite, the beta sign changes.
 
-print(sign_effect_direction('A', 'C', 'T', 'G'), 'result:1')   #If EA and NEA of study1 and study2 are identical in the complementary sequence relationship, the beta sign of each study does not change.
-print(sign_effect_direction('A', 'C', 'G', 'T'), 'result:-1')  #If the EA and NEA in study 1 and study 2 are opposite in the complementary sequence relationship, the beta sign changes.
+print(cal_sign_effect_direction('A', 'C', 'T', 'G'), 'result:1')   #If EA and NEA of study1 and study2 are identical in the complementary sequence relationship, the beta sign of each study does not change.
+print(cal_sign_effect_direction('A', 'C', 'G', 'T'), 'result:-1')  #If the EA and NEA in study 1 and study 2 are opposite in the complementary sequence relationship, the beta sign changes.
 
-print(sign_effect_direction('G', 'C', 'G', 'C'), 'result:1')   #If the EA and NEA of study1 and study2 are the same, the beta sign of each study does not change.
-print(sign_effect_direction('G', 'C', 'C', 'G'), 'result:-1')  #If the EA and NEA in study 1 and study 2 are opposite, the beta sign changes.
+print(cal_sign_effect_direction('G', 'C', 'G', 'C'), 'result:1')   #If the EA and NEA of study1 and study2 are the same, the beta sign of each study does not change.
+print(cal_sign_effect_direction('G', 'C', 'C', 'G'), 'result:-1')  #If the EA and NEA in study 1 and study 2 are opposite, the beta sign changes.
 
-print(sign_effect_direction('-', 'A', 'G', 'A'), 'result:0')   #If the value of EA or NEA is not one of "A, G, T, C", the two studies are not combined.
+print(cal_sign_effect_direction('-', 'A', 'G', 'A'), 'result:0')   #If the value of EA or NEA is not one of "A, G, T, C", the two studies are not combined.
 """
 
 ###################################
@@ -109,6 +130,9 @@ class BetaMeta:
         A tuple (success, message), where success is a boolean indicating whether the operation was successful,
         and message is a string containing a success or error message.
         """          
+        myNAME = self.__class__.__name__+"::"+sys._getframe().f_code.co_name
+        WriteLog(myNAME, "In", type='INFO', fplog=self.__fplog)
+        
         rv = True
         rvmsg = "Success"
         
@@ -140,7 +164,7 @@ class BetaMeta:
             print(str(e))
             rv = False
             rvmsg = str(e)
-            print("Error has occurred in the ConcatData process")
+            print(f"Error has occurred in the {myNAME} process") 
             sys.exit()
     
         return rv, rvmsg        
@@ -153,6 +177,9 @@ class BetaMeta:
         A tuple (success, message), where success is a boolean indicating whether the operation was successful,
         and message is a string containing a success or error message.
         """          
+        myNAME = self.__class__.__name__+"::"+sys._getframe().f_code.co_name
+        WriteLog(myNAME, "In", type='INFO', fplog=self.__fplog)
+        
         rv = True
         rvmsg = "Success"
         
@@ -172,7 +199,7 @@ class BetaMeta:
             print(str(e))
             rv = False
             rvmsg = str(e)
-            print("Error has occurred in the DeduplicateData process")
+            print(f"Error has occurred in the {myNAME} process") 
             sys.exit()
     
         return rv, rvmsg           
@@ -185,6 +212,9 @@ class BetaMeta:
         A tuple (success, message), where success is a boolean indicating whether the operation was successful,
         and message is a string containing a success or error message.
         """          
+        myNAME = self.__class__.__name__+"::"+sys._getframe().f_code.co_name
+        WriteLog(myNAME, "In", type='INFO', fplog=self.__fplog)
+        
         rv = True
         rvmsg = "Success"
         
@@ -223,7 +253,7 @@ class BetaMeta:
             print(str(e))
             rv = False
             rvmsg = str(e)
-            print("Error has occurred in the CalculateBeta process")
+            print(f"Error has occurred in the {myNAME} process") 
             sys.exit()
     
         return rv, rvmsg   
@@ -236,6 +266,9 @@ class BetaMeta:
         A tuple (success, message), where success is a boolean indicating whether the operation was successful,
         and message is a string containing a success or error message.
         """          
+        myNAME = self.__class__.__name__+"::"+sys._getframe().f_code.co_name
+        WriteLog(myNAME, "In", type='INFO', fplog=self.__fplog)
+        
         rv = True
         rvmsg = "Success"
         
@@ -266,17 +299,17 @@ class BetaMeta:
                 NON_EFFECT_ALLELE = self.df_meta_input.loc[idx_min]['NON_EFFECT_ALLELE']
 
                 for idx, row in self.df_meta_input[condition].iterrows():
-                    if sign_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == -1:
+                    if cal_sign_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == -1:
                         self.df_meta_input.loc[idx, 'EFFECT_ALLELE'] = EFFECT_ALLELE
                         self.df_meta_input.loc[idx, 'NON_EFFECT_ALLELE'] = NON_EFFECT_ALLELE
                         self.df_meta_input.loc[idx, 'BETA'] *= -1
 
-                    elif sign_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == 1:
+                    elif cal_sign_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == 1:
                         self.df_meta_input.loc[idx, 'EFFECT_ALLELE'] = EFFECT_ALLELE
                         self.df_meta_input.loc[idx, 'NON_EFFECT_ALLELE'] = NON_EFFECT_ALLELE
                         self.df_meta_input.loc[idx, 'BETA'] *= 1      
 
-                    elif sign_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == 0:
+                    elif cal_sign_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == 0:
                         self.df_meta_input = self.df_meta_input.drop(idx)
 
                 self.li_EFFECT_ALLELE.append(EFFECT_ALLELE)
@@ -287,7 +320,7 @@ class BetaMeta:
             print(str(e))
             rv = False
             rvmsg = str(e)
-            print("Error has occurred in the CorrectEffectDirection process")
+            print(f"Error has occurred in the {myNAME} process") 
             sys.exit()
     
         return rv, rvmsg  
@@ -300,6 +333,9 @@ class BetaMeta:
         A tuple (success, message), where success is a boolean indicating whether the operation was successful,
         and message is a string containing a success or error message.
         """          
+        myNAME = self.__class__.__name__+"::"+sys._getframe().f_code.co_name
+        WriteLog(myNAME, "In", type='INFO', fplog=self.__fplog)
+        
         rv = True
         rvmsg = "Success"
         
@@ -334,7 +370,7 @@ class BetaMeta:
             print(str(e))
             rv = False
             rvmsg = str(e)
-            print("Error has occurred in the CalculateWeightedAverageEffectSize process")
+            print(f"Error has occurred in the {myNAME} process") 
             sys.exit()
     
         return rv, rvmsg  
@@ -347,6 +383,9 @@ class BetaMeta:
         A tuple (success, message), where success is a boolean indicating whether the operation was successful,
         and message is a string containing a success or error message.
         """          
+        myNAME = self.__class__.__name__+"::"+sys._getframe().f_code.co_name
+        WriteLog(myNAME, "In", type='INFO', fplog=self.__fplog)
+        
         rv = True
         rvmsg = "Success"
         
@@ -376,7 +415,7 @@ class BetaMeta:
             print(str(e))
             rv = False
             rvmsg = str(e)
-            print("Error has occurred in the CalculateQstatistic process")
+            print(f"Error has occurred in the {myNAME} process") 
             sys.exit()
     
         return rv, rvmsg  
@@ -389,6 +428,9 @@ class BetaMeta:
         A tuple (success, message), where success is a boolean indicating whether the operation was successful,
         and message is a string containing a success or error message.
         """          
+        myNAME = self.__class__.__name__+"::"+sys._getframe().f_code.co_name
+        WriteLog(myNAME, "In", type='INFO', fplog=self.__fplog)
+        
         rv = True
         rvmsg = "Success"
         
@@ -416,7 +458,7 @@ class BetaMeta:
             print(str(e))
             rv = False
             rvmsg = str(e)
-            print("Error has occurred in the CalculateHeterogeneityMetric process")
+            print(f"Error has occurred in the {myNAME} process") 
             sys.exit()
     
         return rv, rvmsg  
@@ -429,6 +471,9 @@ class BetaMeta:
         A tuple (success, message), where success is a boolean indicating whether the operation was successful,
         and message is a string containing a success or error message.
         """          
+        myNAME = self.__class__.__name__+"::"+sys._getframe().f_code.co_name
+        WriteLog(myNAME, "In", type='INFO', fplog=self.__fplog)
+        
         rv = True
         rvmsg = "Success"
         
@@ -472,7 +517,7 @@ class BetaMeta:
             print(str(e))
             rv = False
             rvmsg = str(e)
-            print("Error has occurred in the CalculateRandomEffectModel process")
+            print(f"Error has occurred in the {myNAME} process") 
             sys.exit()
     
         return rv, rvmsg  
@@ -485,6 +530,9 @@ class BetaMeta:
         A tuple (success, message), where success is a boolean indicating whether the operation was successful,
         and message is a string containing a success or error message.
         """          
+        myNAME = self.__class__.__name__+"::"+sys._getframe().f_code.co_name
+        WriteLog(myNAME, "In", type='INFO', fplog=self.__fplog)
+        
         rv = True
         rvmsg = "Success"
         
@@ -510,19 +558,22 @@ class BetaMeta:
             print(str(e))
             rv = False
             rvmsg = str(e)
-            print("Error has occurred in the CalculateIntegratedPvalue process")
+            print(f"Error has occurred in the {myNAME} process") 
             sys.exit()
     
         return rv, rvmsg  
 
-    def OutputFile(self): 
+    def CreateOutputDataFrame(self): 
         """
-        Output file - Meta Analysis
+        Create an Output DataFrame df_meta_output
 
         Returns:
         A tuple (success, message), where success is a boolean indicating whether the operation was successful,
         and message is a string containing a success or error message.
         """          
+        myNAME = self.__class__.__name__+"::"+sys._getframe().f_code.co_name
+        WriteLog(myNAME, "In", type='INFO', fplog=self.__fplog)
+        
         rv = True
         rvmsg = "Success"
         
@@ -549,7 +600,7 @@ class BetaMeta:
             print(str(e))
             rv = False
             rvmsg = str(e)
-            print("Error has occurred in the OutputFile process")
+            print(f"Error has occurred in the {myNAME} process") 
             sys.exit()
     
         return rv, rvmsg 
@@ -562,6 +613,9 @@ class BetaMeta:
         A tuple (success, message), where success is a boolean indicating whether the operation was successful,
         and message is a string containing a success or error message.
         """          
+        myNAME = self.__class__.__name__+"::"+sys._getframe().f_code.co_name
+        WriteLog(myNAME, "In", type='INFO', fplog=self.__fplog)
+        
         rv = True
         rvmsg = "Success"
         
@@ -580,7 +634,7 @@ class BetaMeta:
             print(str(e))
             rv = False
             rvmsg = str(e)
-            print("Error has occurred in the CorrectPvalue process")
+            print(f"Error has occurred in the {myNAME} process") 
             sys.exit()
     
         return rv, rvmsg 
@@ -593,6 +647,9 @@ class BetaMeta:
         A tuple (success, message), where success is a boolean indicating whether the operation was successful,
         and message is a string containing a success or error message.
         """          
+        myNAME = self.__class__.__name__+"::"+sys._getframe().f_code.co_name
+        WriteLog(myNAME, "In", type='INFO', fplog=self.__fplog)
+        
         rv = True
         rvmsg = "Success"
         
@@ -629,12 +686,11 @@ class BetaMeta:
             ax.spines['right'].set_position(('data', 0)) 
             plt.savefig(self.path_meta_forestplot_output,bbox_inches='tight')
 
-            print("Meta-Analysis Complete")
         except Exception as e:
             print(str(e))
             rv = False
             rvmsg = str(e)
-            print("Error has occurred in the SaveOutputFiles process")
+            print(f"Error has occurred in the {myNAME} process") 
             sys.exit()
     
         return rv, rvmsg     
@@ -654,9 +710,11 @@ if __name__ == '__main__':
     betameta.CalculateHeterogeneityMetric()
     betameta.CalculateRandomEffectModel()  
     betameta.CalculateIntegratedPvalue()  
-    betameta.OutputFile()  
+    betameta.CreateOutputDataFrame()  
     betameta.CorrectPvalue()  
     betameta.SaveOutputFiles()  
+    
+    print("Meta-Analysis Complete")
 
     
     
