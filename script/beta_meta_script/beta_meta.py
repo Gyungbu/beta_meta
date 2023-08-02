@@ -106,14 +106,23 @@ class BetaMeta:
         
         self.__fplog=fplog
         
+        ## input folder
         curdir = os.path.abspath('')
         self.path_meta_data_dir = f"{curdir}/input/"   
+        
+        ## Dataframe of input data
+        self.df_meta_input = None
+        
+        
+              
+        ###output
         self.path_meta_output = f"{curdir}/output/meta_output.xlsx" 
         self.path_meta_forestplot_output = f"{curdir}/output/meta_forestplot.png" 
         
-        self.df_meta_input = None
+        ## Dataframe to calculate
         self.df_meta_output = None
         
+        ## Lists used for calculation
         self.file_list = None
         self.li_column = None
         self.li_PHENOTYPE_SNP = None
