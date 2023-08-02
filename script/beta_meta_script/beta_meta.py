@@ -1,4 +1,4 @@
-import os
+import os, datetime
 import pandas as pd
 import numpy as np
 import matplotlib.image as mpimg
@@ -99,10 +99,13 @@ print(cal_sign_effect_direction('-', 'A', 'G', 'A'), 'result:0')   #If the value
 ###################################
 
 class BetaMeta:
-    def __init__(self):
+    def __init__(self, fplog=None):
         """
         Initializes a BetaMeta object.
         """                
+        
+        self.__fplog=fplog
+        
         curdir = os.path.abspath('')
         self.path_meta_data_dir = f"{curdir}/input/"   
         self.path_meta_output = f"{curdir}/output/meta_output.xlsx" 
