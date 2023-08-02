@@ -33,7 +33,7 @@ def WriteLog(functionname, msg, type='INFO', fplog=None):
 
 def CalculateSignEffectDirection(effect_allele_study1, non_effect_allele_study1, effect_allele_study2, non_effect_allele_study2):
     """
-    Check the direction of effect between meta-studies
+    Calculate the direction sign of effect between meta-studies
     
         Args:
             effect_allele_study1 (str): Effect allele of the study 1 for the specific phenotype and SNP
@@ -122,8 +122,8 @@ class BetaMeta:
         self.li_BETA_META = None
         self.li_STD_BETA_META = None
         self.li_Q = None
-        self.li_I_square = None
-        self.li_p_value = None
+        self.li_I_SQUARE = None
+        self.li_P_VALUE = None
         
     def ConcatData(self): 
         """
@@ -209,7 +209,7 @@ class BetaMeta:
 
     def CalculateBeta(self): 
         """
-        Calculation - BETA & BETA_SE from Odds ratio & 95% CI
+        Calculate BETA & BETA_SE from Odds ratio & 95% CI
 
         Returns:
         A tuple (success, message), where success is a boolean indicating whether the operation was successful,
@@ -263,7 +263,7 @@ class BetaMeta:
 
     def CorrectEffectDirection(self): 
         """
-        Effect Direction Correction
+        Correct the Effect Direction 
 
         Returns:
         A tuple (success, message), where success is a boolean indicating whether the operation was successful,
@@ -330,7 +330,7 @@ class BetaMeta:
 
     def CalculateWeightedAverageEffectSize(self): 
         """
-        Calculation - Weighted average of the effect sizes 
+        Calculate the Weighted average of the effect sizes 
 
         Returns:
         A tuple (success, message), where success is a boolean indicating whether the operation was successful,
@@ -439,9 +439,9 @@ class BetaMeta:
         
         try: 
             # Calculation - Higgin's heterogeneity metric
-            # li_I_square : List of Higgin's heterogeneity metric corresponding to li_PHENOTYPE_SNP
+            # li_I_SQUARE : List of Higgin's heterogeneity metric corresponding to li_PHENOTYPE_SNP
 
-            self.li_I_square = []
+            self.li_I_SQUARE = []
 
             for j in range(len(self.li_PHENOTYPE_SNP)):
                 condition = (self.df_meta_input.SNP == self.li_PHENOTYPE_SNP[j][1]) & (self.df_meta_input.PHENOTYPE == self.li_PHENOTYPE_SNP[j][0]) 
@@ -452,10 +452,10 @@ class BetaMeta:
                         count += 1
 
                     I_square = 100 * (self.li_Q[j] - (count - 1)) / (self.li_Q[j])
-                    self.li_I_square.append(max(I_square,0))
+                    self.li_I_SQUARE.append(max(I_square,0))
 
                 else:
-                    self.li_I_square.append('Unprocessed')
+                    self.li_I_SQUARE.append('Unprocessed')
             
         except Exception as e:
             print(str(e))
@@ -468,7 +468,7 @@ class BetaMeta:
 
     def CalculateRandomEffectModel(self): 
         """
-        Calculation - Weighted average of the effect sizes Modification - Random Effect Model
+        Random Effect Model - Calculate the Weighted average of the effect sizes 
 
         Returns:
         A tuple (success, message), where success is a boolean indicating whether the operation was successful,
@@ -486,10 +486,10 @@ class BetaMeta:
             # li_STD_BETA_META : List of Standard Error of Weighted average of the effect sizes corrected by a Random Effect Model
 
             for j in range(len(self.li_PHENOTYPE_SNP)):
-                if self.li_I_square[j] != 'Unprocessed': 
+                if self.li_I_SQUARE[j] != 'Unprocessed': 
                     condition = (self.df_meta_input.SNP == self.li_PHENOTYPE_SNP[j][1]) & (self.df_meta_input.PHENOTYPE == self.li_PHENOTYPE_SNP[j][0]) 
 
-                if (self.li_I_square[j] >= 50):
+                if (self.li_I_SQUARE[j] >= 50):
                     sum_w_i = 0
                     sum_w_i_square = 0
                     count = 0
@@ -527,7 +527,7 @@ class BetaMeta:
 
     def CalculateIntegratedPvalue(self): 
         """
-        Calculation - Integrated P-value 
+        Calculate the Integrated P-value 
 
         Returns:
         A tuple (success, message), where success is a boolean indicating whether the operation was successful,
@@ -541,20 +541,20 @@ class BetaMeta:
         
         try: 
             # Calculation - Integrated P-value 
-            # li_p_value : List of P-value corresponding to li_PHENOTYPE_SNP
+            # li_P_VALUE : List of P-value corresponding to li_PHENOTYPE_SNP
 
-            self.li_p_value = []
+            self.li_P_VALUE = []
 
             for j in range(len(self.li_PHENOTYPE_SNP)):
-                if self.li_I_square[j] != 'Unprocessed': 
+                if self.li_I_SQUARE[j] != 'Unprocessed': 
                     Z = self.li_BETA_META[j] / self.li_STD_BETA_META[j]
                     p_value = 2 * norm.cdf(-abs(Z))
 
-                    self.li_p_value.append(p_value)
+                    self.li_P_VALUE.append(p_value)
 
                 else:
                     condition = (self.df_meta_input.SNP == self.li_PHENOTYPE_SNP[j][1]) & (self.df_meta_input.PHENOTYPE == self.li_PHENOTYPE_SNP[j][0]) 
-                    self.li_p_value.append(self.df_meta_input[condition]['P_VAL'].values[0])
+                    self.li_P_VALUE.append(self.df_meta_input[condition]['P_VAL'].values[0])
 
             
         except Exception as e:
@@ -568,7 +568,7 @@ class BetaMeta:
 
     def CreateOutputDataFrame(self): 
         """
-        Create an Output DataFrame df_meta_output
+        Create an Output DataFrame - df_meta_output
 
         Returns:
         A tuple (success, message), where success is a boolean indicating whether the operation was successful,
@@ -592,10 +592,10 @@ class BetaMeta:
 
             self.df_meta_output['BETA'] = self.li_BETA_META
             self.df_meta_output['BETA_SE'] = self.li_STD_BETA_META
-            self.df_meta_output['P_VAL'] = self.li_p_value
+            self.df_meta_output['P_VAL'] = self.li_P_VALUE
             self.df_meta_output['EFFECT_ALLELE'] = self.li_EFFECT_ALLELE
             self.df_meta_output['NON_EFFECT_ALLELE'] = self.li_NON_EFFECT_ALLELE
-            self.df_meta_output['I_SQUARE'] = self.li_I_square
+            self.df_meta_output['I_SQUARE'] = self.li_I_SQUARE
             self.df_meta_output['Q_HET'] = self.li_Q  
 
             
@@ -610,7 +610,7 @@ class BetaMeta:
 
     def CorrectPvalue(self): 
         """
-        P-value Correction - BH adjustment
+        BH adjustment - Correct the P-value
 
         Returns:
         A tuple (success, message), where success is a boolean indicating whether the operation was successful,
@@ -666,7 +666,7 @@ class BetaMeta:
             lower = []
             upper = []
             for j in range(len(self.li_PHENOTYPE_SNP)):
-                if self.li_I_square[j] != 'Unprocessed':
+                if self.li_I_SQUARE[j] != 'Unprocessed':
                     text = self.li_PHENOTYPE_SNP[j][0] + ' - ' + self.li_PHENOTYPE_SNP[j][1]
                     beta_lower = self.li_BETA_META[j] - 1.96 * self.li_STD_BETA_META[j]
                     beta_upper = self.li_BETA_META[j] + 1.96 * self.li_STD_BETA_META[j]
