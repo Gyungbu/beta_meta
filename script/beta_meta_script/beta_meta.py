@@ -105,16 +105,12 @@ class BetaMeta:
         """                
         
         self.__fplog=fplog
-        
-        ## input folder
         curdir = os.path.abspath('')
+        
+        ###input
         self.path_meta_data_dir = f"{curdir}/input/"   
-        
-        ## Dataframe of input data
         self.df_meta_input = None
-        
-        
-              
+                      
         ###output
         self.path_meta_output = f"{curdir}/output/meta_output.xlsx" 
         self.path_meta_forestplot_output = f"{curdir}/output/meta_forestplot.png" 
