@@ -31,7 +31,7 @@ def WriteLog(functionname, msg, type='INFO', fplog=None):
         fplog.write(writestr)
         fplog.flush()
 
-def cal_sign_effect_direction(effect_allele_study1, non_effect_allele_study1, effect_allele_study2, non_effect_allele_study2):
+def CalculateSignEffectDirection(effect_allele_study1, non_effect_allele_study1, effect_allele_study2, non_effect_allele_study2):
     """
     Check the direction of effect between meta-studies
     
@@ -73,25 +73,25 @@ def cal_sign_effect_direction(effect_allele_study1, non_effect_allele_study1, ef
     return result
   
 """
-# Test the Function - "cal_sign_effect_direction"
+# Test the Function - "CalculateSignEffectDirection"
 
-print(cal_sign_effect_direction('T', 'C', 'T', 'A'), 'result:0')   #If only one EA and NEA of study1 and study2 are the same and the rest are different, the two studies are not combined.
+print(CalculateSignEffectDirection('T', 'C', 'T', 'A'), 'result:0')   #If only one EA and NEA of study1 and study2 are the same and the rest are different, the two studies are not combined.
 
-print(cal_sign_effect_direction('A', 'G', 'A', 'G'), 'result:1')   #If the EA and NEA of study1 and study2 are the same, the beta sign of each study does not change. 
-print(cal_sign_effect_direction('A', 'G', 'T', 'C'), 'result:1')   #If EA and NEA of study1 and study2 are identical in the complementary sequence relationship, the beta sign of each study does not change.
-print(cal_sign_effect_direction('A', 'G', 'C', 'T'), 'result:-1')  #If the EA and NEA in study 1 and study 2 are opposite in the complementary sequence relationship, the beta sign changes.
+print(CalculateSignEffectDirection('A', 'G', 'A', 'G'), 'result:1')   #If the EA and NEA of study1 and study2 are the same, the beta sign of each study does not change. 
+print(CalculateSignEffectDirection('A', 'G', 'T', 'C'), 'result:1')   #If EA and NEA of study1 and study2 are identical in the complementary sequence relationship, the beta sign of each study does not change.
+print(CalculateSignEffectDirection('A', 'G', 'C', 'T'), 'result:-1')  #If the EA and NEA in study 1 and study 2 are opposite in the complementary sequence relationship, the beta sign changes.
 
-print(cal_sign_effect_direction('A', 'T', 'G', 'C'), 'result:0')   #If the EA and NEA of study1 and study2 are totally different, the two studies are not combined.
-print(cal_sign_effect_direction('A', 'T', 'A', 'T'), 'result:1')   #If the EA and NEA of study1 and study2 are the same, the beta sign of each study does not change. 
-print(cal_sign_effect_direction('A', 'T', 'T', 'A'), 'result:-1')  #If the EA and NEA in study 1 and study 2 are opposite, the beta sign changes.
+print(CalculateSignEffectDirection('A', 'T', 'G', 'C'), 'result:0')   #If the EA and NEA of study1 and study2 are totally different, the two studies are not combined.
+print(CalculateSignEffectDirection('A', 'T', 'A', 'T'), 'result:1')   #If the EA and NEA of study1 and study2 are the same, the beta sign of each study does not change. 
+print(CalculateSignEffectDirection('A', 'T', 'T', 'A'), 'result:-1')  #If the EA and NEA in study 1 and study 2 are opposite, the beta sign changes.
 
-print(cal_sign_effect_direction('A', 'C', 'T', 'G'), 'result:1')   #If EA and NEA of study1 and study2 are identical in the complementary sequence relationship, the beta sign of each study does not change.
-print(cal_sign_effect_direction('A', 'C', 'G', 'T'), 'result:-1')  #If the EA and NEA in study 1 and study 2 are opposite in the complementary sequence relationship, the beta sign changes.
+print(CalculateSignEffectDirection('A', 'C', 'T', 'G'), 'result:1')   #If EA and NEA of study1 and study2 are identical in the complementary sequence relationship, the beta sign of each study does not change.
+print(CalculateSignEffectDirection('A', 'C', 'G', 'T'), 'result:-1')  #If the EA and NEA in study 1 and study 2 are opposite in the complementary sequence relationship, the beta sign changes.
 
-print(cal_sign_effect_direction('G', 'C', 'G', 'C'), 'result:1')   #If the EA and NEA of study1 and study2 are the same, the beta sign of each study does not change.
-print(cal_sign_effect_direction('G', 'C', 'C', 'G'), 'result:-1')  #If the EA and NEA in study 1 and study 2 are opposite, the beta sign changes.
+print(CalculateSignEffectDirection('G', 'C', 'G', 'C'), 'result:1')   #If the EA and NEA of study1 and study2 are the same, the beta sign of each study does not change.
+print(CalculateSignEffectDirection('G', 'C', 'C', 'G'), 'result:-1')  #If the EA and NEA in study 1 and study 2 are opposite, the beta sign changes.
 
-print(cal_sign_effect_direction('-', 'A', 'G', 'A'), 'result:0')   #If the value of EA or NEA is not one of "A, G, T, C", the two studies are not combined.
+print(CalculateSignEffectDirection('-', 'A', 'G', 'A'), 'result:0')   #If the value of EA or NEA is not one of "A, G, T, C", the two studies are not combined.
 """
 
 ###################################
@@ -302,17 +302,17 @@ class BetaMeta:
                 NON_EFFECT_ALLELE = self.df_meta_input.loc[idx_min]['NON_EFFECT_ALLELE']
 
                 for idx, row in self.df_meta_input[condition].iterrows():
-                    if cal_sign_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == -1:
+                    if CalculateSignEffectDirection(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == -1:
                         self.df_meta_input.loc[idx, 'EFFECT_ALLELE'] = EFFECT_ALLELE
                         self.df_meta_input.loc[idx, 'NON_EFFECT_ALLELE'] = NON_EFFECT_ALLELE
                         self.df_meta_input.loc[idx, 'BETA'] *= -1
 
-                    elif cal_sign_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == 1:
+                    elif CalculateSignEffectDirection(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == 1:
                         self.df_meta_input.loc[idx, 'EFFECT_ALLELE'] = EFFECT_ALLELE
                         self.df_meta_input.loc[idx, 'NON_EFFECT_ALLELE'] = NON_EFFECT_ALLELE
                         self.df_meta_input.loc[idx, 'BETA'] *= 1      
 
-                    elif cal_sign_effect_direction(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == 0:
+                    elif CalculateSignEffectDirection(EFFECT_ALLELE, NON_EFFECT_ALLELE, row['EFFECT_ALLELE'], row['NON_EFFECT_ALLELE']) == 0:
                         self.df_meta_input = self.df_meta_input.drop(idx)
 
                 self.li_EFFECT_ALLELE.append(EFFECT_ALLELE)
